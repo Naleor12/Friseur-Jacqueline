@@ -1,0 +1,73 @@
+---
+// kontakt.astro
+---
+
+<section id="kontakt" class="py-32 px-4 text-center bg-gray-50 border-t border-gray-200" data-aos="fade-up">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold font-josefin mb-6 text-gray-800">
+      Kontakt
+    </h2>
+
+    <p class="text-gray-600 mb-10 font-josefin">
+      Vereinbare jetzt deinen Termin oder komm spontan vorbei – wir freuen uns auf dich!
+    </p>
+
+    <!-- Kontaktinformationen -->
+    <div class="space-y-6 text-gray-700 font-josefin text-left animate-fade-slide-up ">
+      <div class="flex items-start gap-3">
+        <!-- Adresse -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-branding" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <p><strong>Adresse:</strong><br />Wiesenbruchstraße 39, 47475 Kamp-Lintfort</p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <!-- Telefon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-branding" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l3.6 7.59a1 1 0 00.9.41h7.25a1 1 0 00.9-.55l3.38-6.75a1 1 0 00-.9-1.45H6.21" />
+        </svg>
+        <p><strong>Telefon:</strong><br />
+          <a href="tel:+4928421219526" class="text-branding hover:underline">02842 1219526</a>
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <!-- E-Mail -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-branding" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 01-8 0m8 0a4 4 0 00-8 0m8 0V8a4 4 0 00-8 0v4m0 4h.01" />
+        </svg>
+        <p><strong>E-Mail:</strong><br />
+          <a href="mailto:info@friseur-jacqueline-dickhaus.de" class="text-branding hover:underline">info@friseur-jacqueline-dickhaus.de</a>
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <!-- Öffnungszeiten -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-branding" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p><strong>Öffnungszeiten:</strong><br />
+          Di–Fr: 09:00–18:00 Uhr<br />Sa: 09:00–14:00 Uhr
+        </p>
+      </div>
+    </div>
+
+    <!-- Routenplaner Button -->
+    <a href="https://maps.google.com?q=Wiesenbruchstraße+39,+47475+Kamp-Lintfort"
+       target="_blank"
+       class="inline-block mt-10 bg-branding text-white px-6 py-3 rounded-full hover:bg-[#c49fa1] transition font-medium animate-fade-slide-up">
+      Route planen
+    </a>
+
+    <!-- Instagram Icon -->
+    <div class="flex justify-center mt-10 animate-fade-slide-up">
+      <a href="https://www.instagram.com/friseur_jacqueline_dickhaus?igsh=MWF4OWJua3hmdTBhaw==" target="_blank" aria-label="Instagram" class="hover:text-branding transition text-gray-500">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

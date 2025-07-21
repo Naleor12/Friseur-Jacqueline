@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .fade-slide-down {
+    @apply animate-fade-slide-down;
+  }
+
+  @keyframes fade-slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-slide-down {
+    animation: fade-slide-down 0.3s ease-out forwards;
+  }
+}
+
+.ripple-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); /* etwas sichtbarer */
+  filter: blur(30px);
+  animation: ripple-pulse 6s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+
+@keyframes ripple-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}

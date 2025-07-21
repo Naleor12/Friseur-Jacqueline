@@ -1,0 +1,39 @@
+---
+const mitarbeiter = [
+  {
+    name: "Jacqueline",
+    rolle: "Friseurmeisterin",
+    bild: "/jacqueline.JPG",
+  },
+  {
+    name: "Gülnar",
+    rolle: "Schnitt & Styling",
+    bild: "/guelnar.JPG",
+  },
+  {
+    name: "Evelina",
+    rolle: "Beratung",
+    bild: "/evelina.JPG",
+  },
+];
+---
+
+<div 
+  class="relative z-10 mt-10 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 px-4"
+  data-aos="zoom-in" 
+  data-aos-delay="300"
+>
+  {mitarbeiter.map(({ name, rolle, bild }) => (
+    <div class="flex flex-col items-center text-center group">
+      <div class="aspect-square w-48 rounded-full overflow-hidden bg-white shadow-lg p-1 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1 group-hover:shadow-xl">
+        <img 
+          src={bild} 
+          alt={name} 
+          class="w-full h-full object-cover object-top rounded-full"
+        />
+      </div>
+      <p class="mt-4 text-gray-800 font-josefin font-semibold">{name}</p>
+      <p class="text-gray-500 font-josefin text-sm">{rolle}</p>
+    </div>
+  ))}
+</div>

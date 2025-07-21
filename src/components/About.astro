@@ -1,0 +1,62 @@
+---
+// src/components/About.astro
+import TeamGrid from '../components/TeamGrid.astro';
+---
+<section 
+  id="ueber-uns" 
+  class="scroll-mt-24 relative py-32 px-4 bg-gray-50 overflow-hidden"
+>
+  <!-- Parallax Hintergrund -->
+  <div 
+    class="absolute top-0 left-0 w-full h-full bg-fixed bg-center bg-contain bg-no-repeat pointer-events-none"
+    style="background-image: url('/JD_Logo_dark_RGB.svg'); opacity: 0.15; filter: brightness(0.8);"
+  ></div>
+
+  <!-- Sanfter Verlauf nach unten -->
+  <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
+
+  <!-- Inhalt -->
+  <div class="relative z-10 max-w-3xl mx-auto text-center" data-aos="fade-down" data-aos-duration="500">
+    <h2 class="text-3xl md:text-4xl font-bold font-josefin mb-6 text-gray-800">
+      Über uns
+    </h2>
+    <p class="text-lg text-gray-600 font-josefin leading-relaxed">
+      Bei Jacqueline Dickhaus dreht sich alles um Stil, Persönlichkeit und echte Handwerkskunst. 
+      Unser Team aus erfahrenen Friseuren und Stylisten nimmt sich Zeit für deine Wünsche – mit 
+      individueller Beratung, modernen Techniken und viel Liebe zum Detail.
+    </p>
+    <p class="mt-6 text-lg text-gray-600 font-josefin leading-relaxed">
+      Ob klassischer Schnitt, trendige Farbe oder besondere Anlässe: Wir kreieren Looks, 
+      die zu dir passen und dich strahlen lassen. In entspannter Atmosphäre, mit hochwertigen Produkten 
+      und echtem Wohlfühlfaktor.
+    </p>
+  </div>
+
+  <!-- Team-Überschrift -->
+  <h3 class="relative z-10 text-xl font-semibold text-gray-700 text-center mt-20 font-josefin" data-aos="fade-up" data-aos-delay="200">
+    Unser Team
+  </h3>
+
+  <!-- Mitarbeiter-Bilder -->
+<TeamGrid />
+
+  <!-- Zitat -->
+  <div class="relative z-10 mt-16 text-center text-gray-600 font-josefin italic text-sm px-6">
+    <div class="flex justify-center items-center gap-2 mb-2">
+      <div class="w-8 h-px bg-gray-400"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h.01M15 5h.01M7 16h10M7 20h10M8 12h8" />
+      </svg>
+      <div class="w-8 h-px bg-gray-400"></div>
+    </div>
+    <p>„Schönheit beginnt in dem Moment, in dem du beschließt, du selbst zu sein.“ – Jacqueline</p>
+  </div>
+
+  <!-- Wellen-Übergang zum nächsten Abschnitt -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] rotate-180">
+    <svg class="relative block w-[calc(100%+1.3px)] h-[60px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.89,22,103.78,22,151.67,0,47.89-22,103.78-22,151.67,0,47.89,22,103.78,22,151.67,0,47.89-22,103.78-22,151.67,0,47.89,22,103.78,22,151.67,0,47.89-22,103.78-22,151.67,0,47.89,22,103.78,22,151.67,0V0Z" fill="#f9fafb"></path>
+    </svg>
+  </div>
+</section>
+
