@@ -1,24 +1,173 @@
 ---
-const { title } = Astro.props;
+import CookieBanner from '../components/CookieBanner.astro';
+import '../styles/global.css';
+const {
+  title = "Friseur Jacqueline Dickhaus - Kamp-Lintfort | Moderne Frisuren für Damen, Herren & Kinder",
+  description = "Professioneller Friseursalon in Kamp-Lintfort mit 25+ Jahren Erfahrung. Moderne Haarschnitte, Colorationen & Styling für die ganze Familie. Jetzt Termin telefonisch vereinbaren!",
+  keywords = "Friseur Kamp-Lintfort, Haarschnitt, Coloration, Styling, Balayage, Herrenhaarschnitt, Kinderhaarschnitt, Jacqueline Dickhaus, Friseursalon",
+  ogImage = "/images/og-image.jpg",
+  robots = "index, follow"
+} = Astro.props;
+
+// Canonical- und OG-Bild-URL automatisch pro Seite aus der site-URL ableiten
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+
+// Schema.org structured data for local business
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Friseur Jacqueline Dickhaus",
+  "description": description,
+  "url": canonicalUrl,
+  "telephone": "+49 2842 1219526",
+  "email": "info@friseur-jacqueline-dickhaus.de",
+  "priceRange": "€€",
+  "paymentAccepted": "Cash, Credit Card",
+  "currenciesAccepted": "EUR",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Wiesenbruchstraße 39",
+    "addressLocality": "Kamp-Lintfort",
+    "addressRegion": "Nordrhein-Westfalen",
+    "postalCode": "47475",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "51.4969",
+    "longitude": "6.5389"
+  },
+  "openingHours": [
+    "Tu-Fr 09:00-18:00",
+    "Sa 09:00-14:00"
+  ],
+  "image": [
+    "https://friseur-jacqueline-dickhaus.de/images/laden1.JPG",
+    "https://friseur-jacqueline-dickhaus.de/images/laden2.JPG",
+    "https://friseur-jacqueline-dickhaus.de/images/laden3.JPG"
+  ],
+  "sameAs": [
+    "https://www.instagram.com/friseur_jacqueline_dickhaus"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Friseur Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Damenhaarschnitt",
+          "description": "Individueller Haarschnitt für Damen"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Herrenhaarschnitt",
+          "description": "Moderner Herrenhaarschnitt"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Coloration",
+          "description": "Professionelle Haarfärbung und Balayage"
+        }
+      }
+    ]
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Jacqueline Dickhaus",
+    "jobTitle": "Friseurmeisterin"
+  },
+  "acceptsReservations": true,
+  "areaServed": {
+    "@type": "City",
+    "name": "Kamp-Lintfort",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "Nordrhein-Westfalen"
+    }
+  }
+};
 ---
+
 <!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Friseur Jacqueline Dickhaus" />
+    <meta name="robots" content={robots} />
+    <meta name="language" content="German" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Geographic Meta Tags -->
+    <meta name="geo.region" content="DE-NW" />
+    <meta name="geo.placename" content="Kamp-Lintfort" />
+    <meta name="geo.position" content="51.4969;6.5389" />
+    <meta name="ICBM" content="51.4969, 6.5389" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Friseur Jacqueline Dickhaus" />
+    
+    <!-- Business specific Open Graph -->
+    <meta property="business:contact_data:street_address" content="Wiesenbruchstraße 39" />
+    <meta property="business:contact_data:locality" content="Kamp-Lintfort" />
+    <meta property="business:contact_data:postal_code" content="47475" />
+    <meta property="business:contact_data:country_name" content="Deutschland" />
+    <meta property="business:contact_data:phone_number" content="+49 2842 1219526" />
+    <meta property="business:contact_data:website" content={canonicalUrl} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageUrl} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/images/JD_Logo_dark_RGB.png" />
+    <link rel="apple-touch-icon" href="/images/JD_Logo_dark_RGB.png" />
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
 
-    <link rel="stylesheet" href="/src/styles/global.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Stylesheets (Bunny Fonts: DSGVO-konform, EU-Server) -->
+    <link href="https://fonts.bunny.net/css?family=josefin-sans:400,500,700&display=swap" rel="stylesheet" />
 
-    <!-- Smooth Scroll -->
-    <script type="module" src="/src/scripts/scroll-nav.js"></script>
-
-    <!-- AOS Init (mit CSS & JS in einer Datei) -->
-    <script type="module" src="/src/scripts/aos-init.js"></script>
+    <!-- Scripts (von Astro gebündelt, damit sie auch im Build laden) -->
+    <script>
+      import '../scripts/aos-init.js';
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
   </head>
   <body class="scroll-smooth bg-white text-gray-800 font-jost">
     <slot />
+    <CookieBanner />
   </body>
 </html>

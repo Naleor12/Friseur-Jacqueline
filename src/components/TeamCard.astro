@@ -1,0 +1,174 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  image: string;
+  alt: string;
+  description: string;
+  shortDescription: string;
+  tags: string[];
+  specialties: string[];
+  quote: string;
+  isOwner?: boolean;
+  colorTheme?: 'primary' | 'lavender' | 'mint';
+}
+
+const {
+  name,
+  title,
+  image,
+  alt,
+  description,
+  shortDescription,
+  tags,
+  specialties,
+  quote,
+  isOwner = false,
+  colorTheme = 'primary'
+} = Astro.props;
+
+// Robuste ID für Buttons/Areas (keine Leerzeichen/Sonderzeichen)
+const slug = name
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/(^-|-$)/g, "");
+
+// Exakte Pastellfarben mit benutzerdefinierten Hex-Werten
+const colorSchemes = {
+  primary: {
+    gradient: 'from-branding/60',
+    tagBg: 'bg-branding-100',
+    tagText: 'text-branding-800',
+    expandText: 'text-branding-700 hover:text-branding-800',
+    bullet: 'text-branding-700',
+    quoteBg: 'bg-branding-50',
+    button: 'bg-branding-600 hover:bg-branding-700',
+    accent: 'bg-branding/10',
+    cardBorder: 'border-l-branding/30'
+  },
+  lavender: {
+    gradient: 'from-[#c5cce1]/40',
+    tagBg: 'bg-[#c5cce1]/30',
+    tagText: 'text-[#8892b3]',
+    expandText: 'text-[#9ca5c4] hover:text-[#8892b3]',
+    bullet: 'text-[#9ca5c4]',
+    quoteBg: 'bg-[#c5cce1]/20',
+    button: 'bg-[#c5cce1] hover:bg-[#b5c2db]',
+    accent: 'bg-[#c5cce1]/20',
+    cardBorder: 'border-l-[#c5cce1]/60'
+  },
+  mint: {
+    gradient: 'from-[#c6e3cf]/40',
+    tagBg: 'bg-[#c6e3cf]/30',
+    tagText: 'text-[#8db99d]',
+    expandText: 'text-[#a1c7ad] hover:text-[#8db99d]',
+    bullet: 'text-[#a1c7ad]',
+    quoteBg: 'bg-[#c6e3cf]/20',
+    button: 'bg-[#c6e3cf] hover:bg-[#b6d9bf]',
+    accent: 'bg-[#c6e3cf]/20',
+    cardBorder: 'border-l-[#c6e3cf]/60'
+  }
+};
+
+const colors = colorSchemes[colorTheme] || colorSchemes.primary;
+---
+
+<div class="team-card group" data-aos="fade-up">
+  <div class={`relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border-l-4 border-l-transparent hover:${colors.cardBorder}`}>
+    <!-- Subtiler Farbakzent nur bei Hover -->
+    <div class={`absolute top-0 left-0 w-full h-0.5 ${colors.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+    
+    <!-- Image Container with Hover Effect -->
+    <div class="relative h-80 overflow-hidden">
+      <img
+        src={image}
+        alt={alt}
+        class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+      />
+      {isOwner && (
+        <div class={`absolute top-4 right-4 ${colors.button} text-white px-3 py-1 rounded-full text-xs font-medium`}>
+          Inhaberin
+        </div>
+      )}
+      <!-- Gradient Overlay and Short Description (Hover Effect) -->
+      <div class={`absolute inset-0 bg-gradient-to-t ${colors.gradient} via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+      <div class="absolute bottom-6 left-6 right-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+        <p class="text-sm font-light italic leading-relaxed mb-2">{shortDescription}</p>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-8 text-center">
+      <h3 class="text-2xl font-bold text-gray-900 mb-2 font-josefin">{name}</h3>
+      <p class={`font-medium mb-4 ${colors.expandText.split(' ')[0]}`}>{title}</p>
+      <p class="text-gray-600 text-sm leading-relaxed mb-6">{description}</p>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap justify-center gap-2">
+        {tags.map((tag) => (
+          <span class={`px-3 py-1 ${colors.tagBg} ${colors.tagText} text-xs rounded-full`}>{tag}</span>
+        ))}
+      </div>
+
+      <!-- Expandable Content -->
+      <div class="border-t pt-4 mt-6">
+        <div id={`${slug}-collapsed`} class="text-center">
+          <button
+            onclick={`toggleExpanded('${slug}')`}
+            class={`inline-flex items-center gap-2 ${colors.expandText} transition-colors text-sm font-medium`}
+            aria-expanded="false"
+            aria-controls={`${slug}-expanded`}
+          >
+            <span>Mehr über {name} erfahren</span>
+            <svg id={`${slug}-expand-icon`} class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div id={`${slug}-expanded`} class="hidden">
+          <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+            <p class="font-medium text-gray-800">{description}</p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <h4 class="font-semibold text-gray-800 mb-3">Was {name} auszeichnet:</h4>
+              <div class="space-y-2 text-xs leading-relaxed">
+                {specialties.map((specialty) => (
+                  <div class="grid grid-cols-[auto_1fr] gap-3 items-start">
+                    <span class={`${colors.bullet} pt-0.5`}>•</span>
+                    <span>{specialty}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <blockquote class={`italic text-center text-gray-700 ${colors.quoteBg} p-3 rounded-lg`}>
+              {quote}
+            </blockquote>
+          </div>
+
+          <div class="mt-6 pt-4 border-t">
+            <a
+              href="tel:+4928421219526"
+              class={`w-full ${colors.button} text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2`}
+            >
+              <span>Termin: 02842 1219526</span>
+            </a>
+          </div>
+
+          <div class="text-center mt-4">
+            <button
+              onclick={`toggleExpanded('${slug}')`}
+              class="inline-flex items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors text-sm"
+              aria-expanded="true"
+              aria-controls={`${slug}-expanded`}
+            >
+              <span>Weniger anzeigen</span>
+              <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

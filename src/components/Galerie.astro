@@ -1,0 +1,485 @@
+---
+---
+<section id="galerie" class="scroll-mt-24 py-32 px-4 sm:px-10 lg:px-24 bg-gray-100" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold font-josefin text-gray-800 mb-4">
+      Galerie
+    </h2>
+    <div class="w-12 h-1 mx-auto bg-branding mt-4 mb-12 rounded-full"></div>
+    
+    <!-- Filter Buttons -->
+    <div class="flex justify-center gap-4 mb-10">
+      <button class="filter-btn active bg-branding text-white px-6 py-3 rounded-full text-sm font-medium transition-all hover:bg-branding-600 shadow-lg" data-filter="all">
+        Alle
+      </button>
+      <button class="filter-btn bg-white text-gray-600 px-6 py-3 rounded-full text-sm font-medium transition-all hover:bg-branding hover:text-white border border-gray-300 shadow-sm" data-filter="salon">
+        Salon
+      </button>
+      <button class="filter-btn bg-white text-gray-600 px-6 py-3 rounded-full text-sm font-medium transition-all hover:bg-branding hover:text-white border border-gray-300 shadow-sm" data-filter="work">
+        Arbeiten
+      </button>
+    </div>
+
+    <!-- Expanded Image Container -->
+    <div id="expanded-container" class="hidden mb-8 relative bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+      <div class="relative">
+        <img id="expanded-image" src="" alt="" class="w-full h-auto max-h-[70vh] object-contain bg-gray-50">
+        <button id="close-expanded" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-all duration-200 backdrop-blur-sm">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        
+        <!-- Navigation Arrows -->
+        <button id="prev-expanded" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-3 transition-all duration-200 backdrop-blur-sm">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        
+        <button id="next-expanded" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white rounded-full p-3 transition-all duration-200 backdrop-blur-sm">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Image Info -->
+      <div class="p-6 bg-gradient-to-r from-gray-50 to-white">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 id="expanded-title" class="text-xl font-semibold text-gray-900 font-josefin mb-2"></h3>
+            <p id="expanded-description" class="text-gray-600"></p>
+          </div>
+          <div id="expanded-counter" class="bg-branding/10 text-branding px-4 py-2 rounded-full text-sm font-medium"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 masonry">
+      
+      <!-- Featured Image -->
+      <div class="group relative overflow-hidden rounded-2xl shadow-lg col-span-full mb-6 gallery-item cursor-pointer transition-all duration-300 hover:shadow-xl" data-category="salon">
+        <img src="/images/laden1.JPG" alt="Moderner Salon-Innenraum mit eleganten Styling-Stationen und professioneller Ausstattung" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
+          <div class="text-center">
+            <span class="text-white font-semibold text-lg mb-2 block">Unser moderner Salon</span>
+            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gallery Images -->
+      <div class="group relative overflow-hidden rounded-2xl shadow-md gallery-item cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1" data-category="salon">
+        <img src="/images/TeamArbeit.jpg" alt="Team bei der Arbeit - professionelle Beratung und Styling im Salon" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+          <div class="text-center">
+            <span class="text-white font-medium">Unser Team in Aktion</span>
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mt-2 mx-auto backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="group relative overflow-hidden rounded-2xl shadow-md gallery-item cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1" data-category="work">
+        <img src="/images/braut.jpg" alt="Stilvolle Brautfrisur - elegante Hochsteckfrisur für den besonderen Tag" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+          <div class="text-center">
+            <span class="text-white font-medium">Stilvolle Brautfrisur</span>
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mt-2 mx-auto backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="group relative overflow-hidden rounded-2xl shadow-md gallery-item cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1" data-category="salon">
+        <img src="/images/laden3.JPG" alt="Gemütlicher Wartebereich mit modernem Ambiente und komfortablen Sitzgelegenheiten" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+          <div class="text-center">
+            <span class="text-white font-medium">Gemütlicher Wartebereich</span>
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mt-2 mx-auto backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group relative overflow-hidden rounded-2xl shadow-md gallery-item cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1" data-category="work">
+        <img src="/images/ghairb.jpg" alt="Professionelle Haarcoloration - lebendige Farben und perfekte Technik" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+          <div class="text-center">
+            <span class="text-white font-medium">Strahlende Coloration</span>
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mt-2 mx-auto backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group relative overflow-hidden rounded-2xl shadow-md gallery-item cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1" data-category="work">
+        <img src="/images/blond.jpg" alt="Moderner Haarschnitt - präzise Konturen und zeitgemäßer Style" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+          <div class="text-center">
+            <span class="text-white font-medium">Moderner Schnitt</span>
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mt-2 mx-auto backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="tel:+4928421219526" class="mt-12 inline-block bg-branding text-white px-8 py-4 rounded-full font-medium hover:bg-branding-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+      <span class="flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+        </svg>
+        Termin anrufen: 02842 1219526
+      </span>
+    </a>
+
+    <!-- Instagram Link -->
+    <div class="mt-8">
+      <a href="https://www.instagram.com/friseur_jacqueline_dickhaus?igsh=MWF4OWJua3hmdTBhaw==" target="_blank" class="inline-flex items-center gap-2 text-gray-600 hover:text-branding transition-colors">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.75a .75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z" />
+        </svg>
+        Mehr auf Instagram
+      </a>
+    </div>
+  </div>
+
+  <script>
+    console.log('Inline expansion gallery initializing...');
+    
+    document.addEventListener('astro:page-load', initInlineGallery);
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initInlineGallery);
+    } else {
+      initInlineGallery();
+    }
+    
+    function initInlineGallery() {
+      console.log('Initializing inline expansion gallery...');
+      
+      const galleryItems = document.querySelectorAll('.gallery-item') as NodeListOf<HTMLElement>;
+      const filterBtns = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+      const expandedContainer = document.getElementById('expanded-container') as HTMLElement | null;
+      const expandedImage = document.getElementById('expanded-image') as HTMLImageElement | null;
+      const expandedTitle = document.getElementById('expanded-title') as HTMLElement | null;
+      const expandedDescription = document.getElementById('expanded-description') as HTMLElement | null;
+      const expandedCounter = document.getElementById('expanded-counter') as HTMLElement | null;
+      const closeExpanded = document.getElementById('close-expanded') as HTMLButtonElement | null;
+      const prevExpanded = document.getElementById('prev-expanded') as HTMLButtonElement | null;
+      const nextExpanded = document.getElementById('next-expanded') as HTMLButtonElement | null;
+      const galleryGrid = document.getElementById('gallery-grid') as HTMLElement | null;
+      
+      let currentIndex = 0;
+      let currentImages: HTMLImageElement[] = [];
+      let isExpanded = false;
+      
+      console.log('Found gallery items:', galleryItems.length);
+      
+      // Gallery item click handlers
+      galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        if (img) {
+          item.addEventListener('click', () => {
+            console.log('Gallery item clicked:', index);
+            updateImageArray();
+            currentIndex = Array.from(getVisibleImages()).indexOf(img);
+            expandImage();
+          });
+        }
+      });
+      
+      // Filter functionality
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          console.log('Filter clicked:', filter);
+          
+          // Close expanded view when filtering
+          if (isExpanded) {
+            closeExpandedView();
+          }
+          
+          // Update active button
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'bg-branding', 'text-white', 'shadow-lg');
+            b.classList.add('bg-white', 'text-gray-600', 'shadow-sm');
+          });
+          btn.classList.add('active', 'bg-branding', 'text-white', 'shadow-lg');
+          btn.classList.remove('bg-white', 'text-gray-600', 'shadow-sm');
+          
+          // Filter items with smooth animation
+          galleryItems.forEach(item => {
+            const category = (item as HTMLElement).dataset.category;
+            if (filter === 'all' || category === filter) {
+              (item as HTMLElement).style.display = 'block';
+              setTimeout(() => {
+                (item as HTMLElement).style.opacity = '1';
+                (item as HTMLElement).style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              (item as HTMLElement).style.opacity = '0';
+              (item as HTMLElement).style.transform = 'translateY(10px)';
+              setTimeout(() => {
+                (item as HTMLElement).style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+      
+      function getVisibleImages(): NodeListOf<HTMLImageElement> {
+        return document.querySelectorAll('.gallery-item:not([style*="display: none"]) img');
+      }
+      
+      function updateImageArray(): void {
+        currentImages = Array.from(getVisibleImages());
+        console.log('Updated image array:', currentImages.length);
+      }
+      
+      function expandImage(): void {
+        if (!expandedContainer || !expandedImage || !galleryGrid) return;
+        
+        const img = currentImages[currentIndex];
+        if (!img) return;
+        
+        console.log('Expanding image:', currentIndex);
+        isExpanded = true;
+        
+        // Set image and info
+        expandedImage.src = img.src;
+        expandedImage.alt = img.alt;
+        
+        if (expandedTitle) {
+          const title = img.alt?.split('-')[0]?.trim() || 'Galerie Bild';
+          expandedTitle.textContent = title;
+        }
+        
+        if (expandedDescription) {
+          const description = img.alt?.split('-')[1]?.trim() || '';
+          expandedDescription.textContent = description;
+        }
+        
+        if (expandedCounter) {
+          expandedCounter.textContent = `${currentIndex + 1} von ${currentImages.length}`;
+        }
+        
+        // Show expanded container with animation
+        expandedContainer.classList.remove('hidden');
+        expandedContainer.style.opacity = '0';
+        expandedContainer.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          expandedContainer.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+          expandedContainer.style.opacity = '1';
+          expandedContainer.style.transform = 'translateY(0)';
+        }, 10);
+        
+        // Dim gallery grid
+        if (galleryGrid) {
+          galleryGrid.style.transition = 'all 0.4s ease';
+          galleryGrid.style.opacity = '0.6';
+          galleryGrid.style.transform = 'scale(0.98)';
+        }
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+        
+        // Scroll to expanded image
+        setTimeout(() => {
+          expandedContainer.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        }, 200);
+      }
+      
+      function closeExpandedView(): void {
+        if (!expandedContainer || !galleryGrid) return;
+        
+        console.log('Closing expanded view');
+        isExpanded = false;
+        
+        // Hide expanded container with animation
+        expandedContainer.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        expandedContainer.style.opacity = '0';
+        expandedContainer.style.transform = 'translateY(-20px)';
+        
+        // Restore gallery grid
+        galleryGrid.style.transition = 'all 0.3s ease';
+        galleryGrid.style.opacity = '1';
+        galleryGrid.style.transform = 'scale(1)';
+        
+        setTimeout(() => {
+          expandedContainer.classList.add('hidden');
+          expandedContainer.style.transition = '';
+          galleryGrid.style.transition = '';
+        }, 300);
+      }
+      
+      function showPrevImage(): void {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateExpandedContent();
+        }
+      }
+      
+      function showNextImage(): void {
+        if (currentIndex < currentImages.length - 1) {
+          currentIndex++;
+          updateExpandedContent();
+        }
+      }
+      
+      function updateExpandedContent(): void {
+        if (!expandedImage || !isExpanded) return;
+        
+        const img = currentImages[currentIndex];
+        if (!img) return;
+        
+        // Fade out
+        expandedImage.style.transition = 'opacity 0.2s ease';
+        expandedImage.style.opacity = '0';
+        
+        setTimeout(() => {
+          // Update content
+          expandedImage.src = img.src;
+          expandedImage.alt = img.alt;
+          
+          if (expandedTitle) {
+            const title = img.alt?.split('-')[0]?.trim() || 'Galerie Bild';
+            expandedTitle.textContent = title;
+          }
+          
+          if (expandedDescription) {
+            const description = img.alt?.split('-')[1]?.trim() || '';
+            expandedDescription.textContent = description;
+          }
+          
+          if (expandedCounter) {
+            expandedCounter.textContent = `${currentIndex + 1} von ${currentImages.length}`;
+          }
+          
+          // Fade in
+          expandedImage.style.opacity = '1';
+          
+          // Update navigation
+          updateNavigationButtons();
+        }, 200);
+      }
+      
+      function updateNavigationButtons(): void {
+        if (!prevExpanded || !nextExpanded) return;
+        
+        // Previous button
+        if (currentIndex === 0) {
+          prevExpanded.style.opacity = '0.5';
+          prevExpanded.style.pointerEvents = 'none';
+        } else {
+          prevExpanded.style.opacity = '1';
+          prevExpanded.style.pointerEvents = 'auto';
+        }
+        
+        // Next button
+        if (currentIndex === currentImages.length - 1) {
+          nextExpanded.style.opacity = '0.5';
+          nextExpanded.style.pointerEvents = 'none';
+        } else {
+          nextExpanded.style.opacity = '1';
+          nextExpanded.style.pointerEvents = 'auto';
+        }
+      }
+      
+      // Event listeners
+      closeExpanded?.addEventListener('click', closeExpandedView);
+      prevExpanded?.addEventListener('click', showPrevImage);
+      nextExpanded?.addEventListener('click', showNextImage);
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (isExpanded) {
+          switch(e.key) {
+            case 'Escape':
+              closeExpandedView();
+              break;
+            case 'ArrowLeft':
+              e.preventDefault();
+              showPrevImage();
+              break;
+            case 'ArrowRight':
+              e.preventDefault();
+              showNextImage();
+              break;
+          }
+        }
+      });
+      
+      // Click outside to close
+      expandedContainer?.addEventListener('click', (e: MouseEvent) => {
+        if (e.target === expandedContainer) {
+          closeExpandedView();
+        }
+      });
+      
+      console.log('Inline expansion gallery initialized successfully!');
+    }
+  </script>
+  
+  <style>
+    /* Smooth transitions for gallery items */
+    .gallery-item {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Enhanced hover effects */
+    .gallery-item:hover {
+      transform: translateY(-4px);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(211, 181, 183, 0.3);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(211, 181, 183, 0.5);
+    }
+  </style>
+</section>

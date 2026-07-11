@@ -1,0 +1,472 @@
+---
+// Admin.astro - Live-Admin für direkte Bearbeitung im Browser
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Live Preisverwaltung - Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.bunny.net/css?family=josefin-sans:300,400,600,700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Josefin Sans', sans-serif; }
+    .saving-indicator {
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div id="admin-app">
+    <div class="flex justify-center items-center min-h-screen">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+  </div>
+
+  <script>
+    // @ts-nocheck
+    
+    // PASSWORT-SCHUTZ
+    function checkPassword() {
+      const savedAuth = sessionStorage.getItem('admin-authenticated');
+      if (savedAuth === 'true') {
+        return true; // Bereits authentifiziert in dieser Session
+      }
+      
+      const password = prompt("🔐 Admin-Bereich\n\nBitte geben Sie das Passwort ein:");
+      
+      // HIER IHR PASSWORT ÄNDERN:
+      const correctPassword = "friseur2024";
+      
+      if (password === correctPassword) {
+        sessionStorage.setItem('admin-authenticated', 'true');
+        return true;
+      } else if (password !== null) { // Benutzer hat nicht abgebrochen
+        alert("❌ Falsches Passwort!\n\nZugriff verweigert.");
+      }
+      
+      // Zurück zur Startseite
+      window.location.href = '/';
+      return false;
+    }
+    
+    // Passwort prüfen bevor Admin geladen wird
+    if (!checkPassword()) {
+      document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">Weiterleitung...</div>';
+    }
+
+    class LiveAdmin {
+      constructor() {
+        this.data = this.getInitialData();
+        this.container = document.getElementById('admin-app');
+        this.lastSaved = new Date();
+        this.autoSaveEnabled = true;
+        
+        this.render();
+        this.startAutoSave();
+      }
+
+      getInitialData() {
+        // Versuche gespeicherte Daten zu laden, sonst Standard-Daten
+        try {
+          const saved = localStorage.getItem('friseur-services-data');
+          if (saved) {
+            return JSON.parse(saved);
+          }
+        } catch (error) {
+          console.warn('Fehler beim Laden der Daten:', error);
+        }
+
+        // Standard-Daten
+        return {
+          damen: [
+            {
+              icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+              title: 'Haarschnitt',
+              text: 'Waschen, Schneiden und Föhnen — individuell auf deinen Typ abgestimmt.',
+              duration: '45 Min',
+              price: 'ab 46€',
+              highlight: true,
+            },
+            {
+              icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4 4 4 0 004-4V5z",
+              title: 'Balayage',
+              text: 'Natürliche Strähnentechnik für einen sonnenverwöhnten Look je nach Haarlänge.',
+              duration: '90 Min',
+              price: 'ab 150€',
+              highlight: false,
+            },
+            {
+              icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4 4 4 0 004-4V5z",
+              title: 'Ansatzfärbung',
+              text: 'Professionelle Nachfärbung des Haaransatzes für gleichmäßige Farbe.',
+              duration: '45 Min',
+              price: 'ab 45€',
+              highlight: false,
+            },
+            {
+              icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+              title: 'Hochsteckfrisur',
+              text: 'Elegante Hochsteckfrisur inklusive Probe für besondere Anlässe.',
+              duration: '150 Min',
+              price: '240€',
+              highlight: false,
+            },
+            {
+              icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
+              title: 'Intensivkur',
+              text: 'Intensive Haarpflege für Regeneration und Glanz je nach Haarlänge.',
+              duration: '15 Min',
+              price: '10€',
+              highlight: false,
+            },
+            {
+              icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+              title: 'Make-up',
+              text: 'Professionelles Make-up für Tages- oder Abendlook.',
+              duration: '45-60 Min',
+              price: 'ab 35€',
+              highlight: false,
+            },
+          ],
+          herren: [
+            {
+              icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+              title: 'Maschinenschnitt',
+              text: 'Präzise Konturen, moderne Fades und professionelle Bartpflege.',
+              duration: 'ca. 30-45 Min',
+              price: 'ab 32€',
+              highlight: true,
+            },
+            {
+              icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
+              title: 'Pflege',
+              text: 'Spezialisierte Kopfhaut- und Haarpflege abgestimmt auf Männer.',
+              duration: 'ca. 20-30 Min',
+              price: 'ab 18€',
+              highlight: false,
+            },
+            {
+              icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+              title: 'Styling',
+              text: 'Professionelles Finish mit Wachs, Gel und Pomade für deinen Style.',
+              duration: 'ca. 15 Min',
+              price: 'ab 12€',
+              highlight: false,
+            },
+            {
+              icon: "M4.5 12.75l6 6 9-13.5",
+              title: 'Bartpflege',
+              text: 'Trimmen, formen und pflegen — für den perfekt gepflegten Bart.',
+              duration: 'ca. 20-30 Min',
+              price: 'ab 22€',
+              highlight: false,
+            },
+            {
+              icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+              title: 'Klassischer Schnitt',
+              text: 'Zeitlose Eleganz oder moderne Interpretation — du entscheidest.',
+              duration: 'ca. 45 Min',
+              price: 'ab 38€',
+              highlight: false,
+            },
+            {
+              icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+              title: 'Augenbrauen',
+              text: 'Präzises Formen und Konturieren für den perfekten Feinschliff.',
+              duration: 'ca. 15 Min',
+              price: 'ab 15€',
+              highlight: false,
+            },
+          ],
+          kids: [
+            {
+              icon: "M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+              title: 'Süße Schnitte',
+              text: 'Geduldig & kreativ — auch bei Zappelmäusen.',
+              duration: '30 Min',
+              price: 'ab 15€',
+              highlight: true,
+            },
+            {
+              icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+              title: 'Flechten & Zöpfe',
+              text: 'Liebevolle Frisuren für besondere Anlässe.',
+              duration: '45 Min',
+              price: 'ab 35€',
+              highlight: false,
+            },
+            {
+              icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
+              title: 'Pflegeleicht',
+              text: 'Alltagstauglich & kindgerecht gestylt.',
+              duration: '15 Min',
+              price: '10€',
+              highlight: false,
+            },
+            {
+              icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+              title: 'Waschen & Föhnen',
+              text: 'Behutsam & stressfrei.',
+              duration: '30 Min',
+              price: '15€',
+              highlight: false,
+            },
+            {
+              icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+              title: 'Glitzer & Accessoires',
+              text: 'Extras, die Kinder lieben.',
+              duration: '30 Min',
+              price: 'ab 30€',
+              highlight: false,
+            },
+            {
+              icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z",
+              title: 'Styling für Events',
+              text: 'Geburtstag, Einschulung & mehr.',
+              duration: '45 Min',
+              price: 'ab 50€',
+              highlight: false,
+            },
+          ],
+        };
+      }
+
+      saveData() {
+        try {
+          localStorage.setItem('friseur-services-data', JSON.stringify(this.data));
+          this.lastSaved = new Date();
+          
+          // Event für die Hauptseite senden
+          const event = new CustomEvent('servicesDataUpdated', {
+            detail: { servicesData: this.data }
+          });
+          window.dispatchEvent(event);
+          
+          // Erfolgs-Feedback
+          this.showSaveIndicator();
+          
+        } catch (error) {
+          console.error('Fehler beim Speichern:', error);
+          alert('Fehler beim Speichern der Daten!');
+        }
+      }
+
+      showSaveIndicator() {
+        const indicator = document.getElementById('save-indicator');
+        if (indicator) {
+          indicator.classList.remove('hidden');
+          indicator.classList.add('saving-indicator');
+          setTimeout(() => {
+            indicator.classList.add('hidden');
+            indicator.classList.remove('saving-indicator');
+          }, 2000);
+        }
+      }
+
+      updateService(category, index, field, value) {
+        this.data[category][index][field] = value;
+        this.saveData();
+      }
+
+      startAutoSave() {
+        setInterval(() => {
+          if (this.autoSaveEnabled) {
+            this.saveData();
+          }
+        }, 10000); // Auto-save alle 10 Sekunden
+      }
+
+      openPreview() {
+        window.open('/', '_blank');
+      }
+
+      resetToDefaults() {
+        if (confirm('Möchten Sie wirklich alle Daten auf die Standard-Werte zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden.')) {
+          localStorage.removeItem('friseur-services-data');
+          this.data = this.getInitialData();
+          this.saveData();
+          this.render();
+        }
+      }
+
+      exportData() {
+        const blob = new Blob([JSON.stringify(this.data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `friseur-preise-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      logout() {
+        if (confirm('🚪 Möchten Sie sich wirklich abmelden?')) {
+          sessionStorage.removeItem('admin-authenticated');
+          window.location.href = '/';
+        }
+      }
+
+      render() {
+        this.container.innerHTML = `
+          <div class="max-w-7xl mx-auto p-6">
+            <!-- Header -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h1 class="text-3xl font-bold text-gray-800 mb-2">🎨 Live Preisverwaltung</h1>
+                  <p class="text-gray-600">Änderungen werden automatisch gespeichert und sind sofort auf der Website sichtbar</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-3">
+                  <button
+                    onclick="window.liveAdmin.logout()"
+                    class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
+                  >
+                    🚪 Abmelden
+                  </button>
+                  
+                  <button
+                    onclick="window.liveAdmin.openPreview()"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  >
+                    👁️ Vorschau anzeigen
+                  </button>
+                  
+                  <button
+                    onclick="window.liveAdmin.exportData()"
+                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
+                  >
+                    💾 Backup erstellen
+                  </button>
+                  
+                  <button
+                    onclick="window.liveAdmin.resetToDefaults()"
+                    class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+                  >
+                    🔄 Zurücksetzen
+                  </button>
+                  
+                  <a 
+                    href="/" 
+                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center gap-2"
+                  >
+                    ← Zur Website
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Status Indicator -->
+              <div class="mt-4 flex items-center gap-3">
+                <div class="flex items-center gap-2 text-green-600">
+                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span class="text-sm font-medium">Live-Modus aktiv</span>
+                </div>
+                
+                <div id="save-indicator" class="hidden flex items-center gap-2 text-blue-600">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span class="text-sm">Wird gespeichert...</span>
+                </div>
+                
+                <div class="text-sm text-gray-500">
+                  Zuletzt gespeichert: ${this.lastSaved.toLocaleTimeString('de-DE')}
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Editor -->
+            ${Object.entries(this.data).map(([category, services]) => `
+              <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 capitalize flex items-center gap-3">
+                  <span class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-lg">
+                    ${services.length} Services
+                  </span>
+                  ${category === 'damen' ? '👩 Damen' : category === 'herren' ? '👨 Herren' : '👶 Kids'}
+                </h2>
+                
+                <div class="grid gap-6">
+                  ${services.map((service, index) => `
+                    <div class="border-2 border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-all duration-200 ${service.highlight ? 'bg-yellow-50 border-yellow-300' : ''}">
+                      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
+                        <div>
+                          <label class="block text-sm font-semibold text-gray-700 mb-2">Titel</label>
+                          <input
+                            type="text"
+                            value="${service.title}"
+                            oninput="window.liveAdmin.updateService('${category}', ${index}, 'title', this.value)"
+                            class="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label class="block text-sm font-semibold text-gray-700 mb-2">Dauer</label>
+                          <input
+                            type="text"
+                            value="${service.duration}"
+                            oninput="window.liveAdmin.updateService('${category}', ${index}, 'duration', this.value)"
+                            class="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <span class="flex items-center gap-2">
+                              💰 Preis
+                              <span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full text-xs font-bold">LIVE</span>
+                            </span>
+                          </label>
+                          <input
+                            type="text"
+                            value="${service.price}"
+                            oninput="window.liveAdmin.updateService('${category}', ${index}, 'price', this.value)"
+                            class="w-full border-2 border-yellow-400 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-600 bg-yellow-50 font-semibold text-yellow-900 transition-colors"
+                          />
+                        </div>
+                        
+                        <div class="flex items-end">
+                          <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-gray-50">
+                            <input
+                              type="checkbox"
+                              ${service.highlight ? 'checked' : ''}
+                              onchange="window.liveAdmin.updateService('${category}', ${index}, 'highlight', this.checked)"
+                              class="w-5 h-5 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500"
+                            />
+                            <span class="text-sm font-semibold text-gray-700">⭐ Beliebt</span>
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Beschreibung</label>
+                        <textarea
+                          rows="3"
+                          oninput="window.liveAdmin.updateService('${category}', ${index}, 'text', this.value)"
+                          class="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                        >${service.text}</textarea>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('')}
+
+            <!-- Footer -->
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl p-6 text-center">
+              <p class="text-lg font-semibold mb-2">🚀 Live-Verwaltung aktiv</p>
+              <p class="text-gray-300">Alle Änderungen werden automatisch gespeichert und sind sofort auf der Website sichtbar.</p>
+              <p class="text-sm text-gray-400 mt-2">Zuletzt aktualisiert: ${new Date().toLocaleString('de-DE')}</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Live-Admin initialisieren
+    window.liveAdmin = new LiveAdmin();
+  </script>
+</body>
+</html>

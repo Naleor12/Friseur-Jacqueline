@@ -1,0 +1,152 @@
+{
+  "damen": [
+    {
+      "title": "Haarschnitt",
+      "text": "Waschen, Schneiden und Föhnen – individuell auf deinen Typ abgestimmt.",
+      "duration": "45 Min",
+      "price": "ab 460€",
+      "highlight": true,
+      "iconId": "haircut"
+    },
+    {
+      "title": "Balayage",
+      "text": "Natürliche Strähnentechnik für einen sonnenverwöhnten Look je nach Haarlänge.",
+      "duration": "90 Min",
+      "price": "ab 150€",
+      "highlight": false,
+      "iconId": "balayage"
+    },
+    {
+      "title": "Ansatzfärbung",
+      "text": "Professionelle Nachfärbung des Haaransatzes für gleichmäßige Farbe.",
+      "duration": "45 Min",
+      "price": "ab 45€",
+      "highlight": false,
+      "iconId": "coloring"
+    },
+    {
+      "title": "Hochsteckfrisur",
+      "text": "Elegante Hochsteckfrisur inklusive Probe für besondere Anlässe.",
+      "duration": "150 Min",
+      "price": "240€",
+      "highlight": false,
+      "iconId": "updo"
+    },
+    {
+      "title": "Intensivkur",
+      "text": "Intensive Haarpflege für Regeneration und Glanz je nach Haarlänge.",
+      "duration": "15 Min",
+      "price": "10€",
+      "highlight": false,
+      "iconId": "treatment"
+    },
+    {
+      "title": "Make-up",
+      "text": "Professionelles Make-up für Tages- oder Abendlook.",
+      "duration": "45-60 Min",
+      "price": "ab 35€",
+      "highlight": false,
+      "iconId": "makeup"
+    }
+  ],
+  "herren": [
+    {
+      "title": "Maschinenschnitt",
+      "text": "Präzise Konturen, moderne Fades und professionelle Bartpflege.",
+      "duration": "ca. 30-45 Min",
+      "price": "ab 32€",
+      "highlight": true,
+      "iconId": "haircut"
+    },
+    {
+      "title": "Pflege",
+      "text": "Spezialisierte Kopfhaut- und Haarpflege abgestimmt auf Männer.",
+      "duration": "ca. 20-30 Min",
+      "price": "ab 18€",
+      "highlight": false,
+      "iconId": "treatment"
+    },
+    {
+      "title": "Styling",
+      "text": "Professionelles Finish mit Wachs, Gel und Pomade für deinen Style.",
+      "duration": "ca. 15 Min",
+      "price": "ab 12€",
+      "highlight": false,
+      "iconId": "styling"
+    },
+    {
+      "title": "Bartpflege",
+      "text": "Trimmen, formen und pflegen – für den perfekt gepflegten Bart.",
+      "duration": "ca. 20-30 Min",
+      "price": "ab 22€",
+      "highlight": false,
+      "iconId": "beard"
+    },
+    {
+      "title": "Klassischer Schnitt",
+      "text": "Zeitlose Eleganz oder moderne Interpretation – du entscheidest.",
+      "duration": "ca. 45 Min",
+      "price": "ab 38€",
+      "highlight": false,
+      "iconId": "classic-cut"
+    },
+    {
+      "title": "Augenbrauen",
+      "text": "Präzises Formen und Konturieren für den perfekten Feinschliff.",
+      "duration": "ca. 15 Min",
+      "price": "ab 15€",
+      "highlight": false,
+      "iconId": "eyebrows"
+    }
+  ],
+  "kids": [
+    {
+      "title": "Süße Schnitte",
+      "text": "Geduldig & kreativ – auch bei Zappelmäusen.",
+      "duration": "30 Min",
+      "price": "ab 15€",
+      "highlight": true,
+      "iconId": "kids-cut"
+    },
+    {
+      "title": "Flechten & Zöpfe",
+      "text": "Liebevolle Frisuren für besondere Anlässe.",
+      "duration": "45 Min",
+      "price": "ab 35€",
+      "highlight": false,
+      "iconId": "braids"
+    },
+    {
+      "title": "Pflegeleicht",
+      "text": "Alltagstauglich & kindgerecht gestylt.",
+      "duration": "15 Min",
+      "price": "10€",
+      "highlight": false,
+      "iconId": "treatment"
+    },
+    {
+      "title": "Waschen & Föhnen",
+      "text": "Behutsam & stressfrei.",
+      "duration": "30 Min",
+      "price": "15€",
+      "highlight": false,
+      "iconId": "wash"
+    },
+    {
+      "title": "Glitzer & Accessoires",
+      "text": "Extras, die Kinder lieben.",
+      "duration": "30 Min",
+      "price": "ab 30€",
+      "highlight": false,
+      "iconId": "accessories"
+    },
+    {
+      "title": "Styling für Events",
+      "text": "Geburtstag, Einschulung & mehr.",
+      "duration": "45 Min",
+      "price": "ab 50€",
+      "highlight": false,
+      "iconId": "event-styling"
+    }
+  ]
+}
