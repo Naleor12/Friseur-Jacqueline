@@ -22,17 +22,13 @@ const faqs = [
     q: "Welche Zahlungsmöglichkeiten gibt es im Salon?",
     a: "Du kannst bei uns ganz bequem in bar sowie per Girocard (EC-Karte) oder Kreditkarte bezahlen.",
   },
-  {
-    q: "Bietet ihr auch Geschenkgutscheine an?",
-    a: "Ja, sehr gern! Hochwertig gestaltete Geschenkgutscheine mit Wunschbetrag oder für eine konkrete Verwöhnbehandlung erhältst du direkt während unserer Öffnungszeiten im Salon.",
-  },
 ];
 ---
 
 <section id="faq" class="scroll-mt-20 bg-cream py-24 lg:py-32 border-t border-linen">
   <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14">
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-      <!-- Left: Intro, Gift Vouchers & Google Reviews -->
+      <!-- Left: Intro & Direct Phone Consultation Card -->
       <div class="lg:col-span-5 space-y-8 reveal">
         <div class="space-y-4">
           <p class="text-[11px] uppercase tracking-editorial text-branding-700 font-medium">
@@ -47,27 +43,27 @@ const faqs = [
           </p>
         </div>
 
-        <!-- Geschenkgutschein Card -->
+        <!-- Direkter Kontakt / Persönliche Rückfrage -->
         <div class="rounded-[1.75rem] bg-espresso text-cream p-7 sm:p-8 border border-white/10 space-y-4 shadow-lg">
           <div class="flex items-center justify-between gap-4">
             <span class="text-[10px] uppercase tracking-editorial text-branding font-medium">
-              Geschenkidee
+              Direkter Draht
             </span>
             <img src="/images/JD_Logo_light_RGB.svg" alt="" aria-hidden="true" class="h-6 w-auto opacity-80" />
           </div>
           <h3 class="font-serif text-3xl font-normal leading-snug">
-            Zeit für Schönheit <em class="italic text-branding font-light">verschenken.</em>
+            Deine Frage war <em class="italic text-branding font-light">nicht dabei?</em>
           </h3>
           <p class="text-sm text-cream/75 font-light leading-relaxed">
-            Ob Geburtstag, Muttertag oder einfach als kleine Aufmerksamkeit: Unsere
-            Geschenkgutscheine sind direkt im Salon mit Wunschbetrag erhältlich.
+            Du planst eine größere Farbveränderung, ein Event-Styling oder hast eine spezielle
+            Frage zu deinem Haar? Ruf uns einfach kurz im Salon an – wir helfen dir gern weiter.
           </p>
           <div class="pt-1">
             <a
               href={SALON.phoneHref}
               class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-branding hover:text-cream transition-colors font-medium"
             >
-              <span>Gutschein vorbestellen</span>
+              <span>Anrufen: {SALON.phoneDisplay}</span>
               <span>→</span>
             </a>
           </div>
