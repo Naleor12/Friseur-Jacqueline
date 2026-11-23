@@ -9,6 +9,7 @@ interface Props {
   keywords?: string;
   ogImage?: string;
   robots?: string;
+  preloadHero?: boolean;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   keywords = "Friseur Kamp-Lintfort, Haarschnitt, Coloration, Balayage, Brautfrisur, Herrenhaarschnitt, Kinderhaarschnitt, Jacqueline Dickhaus, Friseurmeisterin",
   ogImage = "/images/og-image.jpg",
   robots = "index, follow",
+  preloadHero = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
@@ -115,10 +117,20 @@ const businessSchema = {
       rel="stylesheet"
     />
 
+    {preloadHero && (
+      <link rel="preload" as="image" href="/images/laden1-opt.webp" type="image/webp" fetchpriority="high" />
+    )}
+
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
   </head>
   <body class="bg-cream text-espresso font-sans antialiased overflow-x-hidden selection:bg-branding selection:text-espresso">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-espresso focus:text-cream focus:px-5 focus:py-3 focus:rounded-full focus:text-xs focus:uppercase focus:tracking-widest focus:shadow-xl"
+    >
+      Zum Hauptinhalt springen
+    </a>
     <slot />
     <CookieBanner />
 

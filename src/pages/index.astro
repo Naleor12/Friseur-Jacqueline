@@ -12,9 +12,12 @@ import Kontakt from '../components/Kontakt.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Friseur Jacqueline Dickhaus — Kamp-Lintfort | Meisterbetrieb für Schnitt, Farbe & Stil">
+<BaseLayout
+  title="Friseur Jacqueline Dickhaus — Kamp-Lintfort | Meisterbetrieb für Schnitt, Farbe & Stil"
+  preloadHero={true}
+>
   <Navbar />
-  <main>
+  <main id="main-content">
     <Hero />
     <About />
     <Leistungen />

@@ -1,3 +1,6 @@
+# Eigene Fehlerseite
+ErrorDocument 404 /404.html
+
 # Kanonische Weiterleitung (HTTPS & ohne www)
 <IfModule mod_rewrite.c>
   RewriteEngine On

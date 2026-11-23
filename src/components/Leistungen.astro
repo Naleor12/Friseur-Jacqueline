@@ -7,6 +7,8 @@ const signatures = [
     title: "Schnitt & Styling",
     subtitle: "Typgerecht, tragbar & präzise",
     image: "/images/schnitt-opt.webp",
+    width: 1400,
+    height: 933,
     tag: "Damen & Herren",
     targetTab: "damen",
   },
@@ -14,6 +16,8 @@ const signatures = [
     title: "Balayage & Farbe",
     subtitle: "Weiche Übergänge & brillanter Glanz",
     image: "/images/blond-opt.webp",
+    width: 942,
+    height: 2040,
     tag: "Farbkompetenz",
     targetTab: "damen",
   },
@@ -21,6 +25,8 @@ const signatures = [
     title: "Braut & Anlässe",
     subtitle: "Romantische Hochsteck- & Eventfrisuren",
     image: "/images/braut-opt.webp",
+    width: 908,
+    height: 2016,
     tag: "Inkl. Probetermin",
     targetTab: "damen",
   },
@@ -56,6 +62,9 @@ const signatures = [
           <img
             src={sig.image}
             alt={sig.title}
+            width={sig.width}
+            height={sig.height}
+            decoding="async"
             class="w-full h-full object-cover object-center transition-transform duration-700 ease-editorial group-hover:scale-105"
             loading="lazy"
           />

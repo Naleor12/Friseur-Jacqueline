@@ -4,6 +4,8 @@ import { SALON } from '../data/salon';
 const galleryItems = [
   {
     src: "/images/laden1-opt.webp",
+    width: 1600,
+    height: 1066,
     title: "Unser Salon in Kamp-Lintfort",
     subtitle: "Warme Holzlamellen, runde Spiegel & ruhiges Licht",
     category: "salon",
@@ -11,6 +13,8 @@ const galleryItems = [
   },
   {
     src: "/images/blond-opt.webp",
+    width: 942,
+    height: 2040,
     title: "Sonnengeküsstes Balayage",
     subtitle: "Weiche Übergänge & natürliche Wellen",
     category: "work",
@@ -18,6 +22,8 @@ const galleryItems = [
   },
   {
     src: "/images/braut-opt.webp",
+    width: 908,
+    height: 2016,
     title: "Braut- & Anlassstyling",
     subtitle: "Romantische Flecht- & Steckfrisur mit Schleierkraut",
     category: "work",
@@ -25,6 +31,8 @@ const galleryItems = [
   },
   {
     src: "/images/laden2-opt.webp",
+    width: 1400,
+    height: 1925,
     title: "Die Lounge",
     subtitle: "Ankommen, durchatmen & den Alltag vergessen",
     category: "salon",
@@ -32,6 +40,8 @@ const galleryItems = [
   },
   {
     src: "/images/styling-opt.webp",
+    width: 1400,
+    height: 933,
     title: "Präzises Styling & Finish",
     subtitle: "Geschmeidige Bewegung & natürlicher Glanz",
     category: "work",
@@ -39,6 +49,8 @@ const galleryItems = [
   },
   {
     src: "/images/laden3-opt.webp",
+    width: 1600,
+    height: 1001,
     title: "Empfang & Ambiente",
     subtitle: "Modernes Ambiente mit Liebe zum Detail",
     category: "salon",
@@ -46,6 +58,8 @@ const galleryItems = [
   },
   {
     src: "/images/schnitt-opt.webp",
+    width: 1400,
+    height: 933,
     title: "Moderne Schnittkunst",
     subtitle: "Typgerechter Bob mit klarer Linie",
     category: "work",
@@ -110,6 +124,9 @@ const galleryItems = [
           <img
             src={item.src}
             alt={`${item.title} – ${item.subtitle}`}
+            width={item.width}
+            height={item.height}
+            decoding="async"
             class="w-full h-full object-cover object-center transition-transform duration-700 ease-editorial group-hover:scale-105"
             loading="lazy"
           />
@@ -189,6 +206,9 @@ const galleryItems = [
         id="lb-img"
         src=""
         alt=""
+        width="1400"
+        height="1000"
+        decoding="async"
         class="max-h-[75vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
       />
       <div class="w-full max-w-2xl flex items-end justify-between gap-4 text-cream px-2">
@@ -288,6 +308,26 @@ const galleryItems = [
     lightbox?.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
+
+    // Mobile Touch Swipe Support
+    let touchStartX = 0;
+    lightbox?.addEventListener(
+      'touchstart',
+      (e: TouchEvent) => {
+        touchStartX = e.changedTouches[0]?.clientX || 0;
+      },
+      { passive: true }
+    );
+    lightbox?.addEventListener(
+      'touchend',
+      (e: TouchEvent) => {
+        const dx = (e.changedTouches[0]?.clientX || 0) - touchStartX;
+        if (Math.abs(dx) > 48) {
+          step(dx > 0 ? -1 : 1);
+        }
+      },
+      { passive: true }
+    );
 
     document.addEventListener('keydown', (e) => {
       if (lightbox?.classList.contains('hidden')) return;
