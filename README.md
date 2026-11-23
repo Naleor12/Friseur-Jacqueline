@@ -20,9 +20,9 @@ npm run deploy     # Build + dist-Bereinigung + Strato-Upload
 
 ## Struktur
 
-- `src/data/salon.ts` – Zentrale Stammdaten (Adresse, Telefon, E-Mail, Öffnungszeiten, Google-Profil)
+- `src/data/salon.ts` – Zentrale Stammdaten (Adresse, Telefon, E-Mail, Öffnungszeiten, Google-Profil, optionales Urlaubs-/Hinweis-Banner über `notice`)
 - `src/data/services.json` – Leistungen & Preise (Damen, Herren, Kinder)
-- `src/components/` – Seiten-Bausteine (`Navbar`, `Hero`, `About`, `Leistungen`, `ServicesMenu`, `Team`, `Galerie`, `Reviews`, `Faq`, `Kontakt`, `Footer`, `CookieBanner`)
+- `src/components/` – Seiten-Bausteine (`Navbar`, `Hero`, `About`, `Leistungen`, `ServicesMenu`, `Team`, `Galerie`, `Reviews`, `Faq`, `Kontakt`, `Footer`)
 - `src/layouts/BaseLayout.astro` – `<head>`, Meta/SEO, JSON-LD (`HairSalon` + `AggregateRating`)
 - `src/pages/` – `index.astro`, `Impressum.astro`, `Datenschutz.astro`
 - `public/images/*-opt.webp` & `public/jacqueline_1.JPG` – Web-optimierte Bilder

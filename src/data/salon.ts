@@ -1,4 +1,7 @@
 export const SALON = {
+  // Optionaler Hinweis-Balken ganz oben (z. B. Betriebsferien oder geaenderte Feiertagszeiten).
+  // Leer lassen ("") = Hinweis ist ausgeblendet.
+  notice: "",
   name: "Friseur Jacqueline Dickhaus",
   shortName: "Jacqueline Dickhaus",
   tagline: "Meisterbetrieb für Schnitt, Farbe & Stil",

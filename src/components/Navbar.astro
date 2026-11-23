@@ -22,6 +22,32 @@ const navLinks = [
   id="site-header"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-editorial bg-cream/90 backdrop-blur-md border-b border-linen/70"
 >
+  <!-- Optionaler Hinweis-Balken (aktiv wenn SALON.notice gesetzt oder ?vorschau-hinweis=1) -->
+  <div
+    id="salon-notice-bar"
+    class={`${SALON.notice ? 'block' : 'hidden'} bg-espresso text-cream border-b border-white/10`}
+    role="status"
+  >
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 py-2.5 flex items-center justify-between gap-4 text-xs">
+      <div class="flex items-center gap-2.5 mx-auto text-center">
+        <span class="w-1.5 h-1.5 rounded-full bg-branding flex-shrink-0" aria-hidden="true"></span>
+        <p id="salon-notice-text" class="font-light tracking-wide text-cream/95">
+          {SALON.notice}
+        </p>
+      </div>
+      <button
+        id="salon-notice-close"
+        type="button"
+        aria-label="Hinweis schließen"
+        class="text-cream/60 hover:text-branding transition-colors p-1 flex-shrink-0"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14">
     <div class="flex items-center justify-between h-20">
       <!-- Brand Logo + Wordmark -->
@@ -175,7 +201,34 @@ const navLinks = [
 
 <script>
   function initNavbar() {
+    const noticeBar = document.getElementById('salon-notice-bar');
+    const noticeText = document.getElementById('salon-notice-text');
+    const noticeClose = document.getElementById('salon-notice-close');
+
     const header = document.getElementById('site-header');
+    const heroSection = document.getElementById('hero');
+
+    const syncHeaderOffset = () => {
+      if (header && heroSection) {
+        heroSection.style.paddingTop = `${header.offsetHeight}px`;
+      }
+    };
+
+    // Live-Vorschau ueber ?vorschau-hinweis=1 testen (ohne echte Besucher zu beeinflussen)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('vorschau-hinweis') === '1' && noticeBar && noticeText) {
+      noticeText.textContent =
+        'Vorschau-Hinweis: Vom 24.12. bis 02.01. bleibt unser Salon geschlossen – ab dem 03.01. sind wir wieder wie gewohnt für euch da.';
+      noticeBar.classList.remove('hidden');
+    }
+
+    noticeClose?.addEventListener('click', () => {
+      noticeBar?.classList.add('hidden');
+      syncHeaderOffset();
+    });
+
+    syncHeaderOffset();
+    window.addEventListener('resize', syncHeaderOffset, { passive: true });
     const toggleBtn = document.getElementById('mobile-menu-toggle');
     const drawer = document.getElementById('mobile-drawer');
     const bar1 = document.getElementById('bar-1');
