@@ -1,7 +1,7 @@
 # Friseur-Jacqueline
 
 Webseite für den Friseursalon **Jacqueline Dickhaus** (Kamp-Lintfort) im Warm-Editorial-Boutique-Design.
-Statische Seite, gebaut mit **Astro** + **Tailwind CSS**, Preis-Menü als kleine **React**-Insel. Schriften (*Cormorant Garamond* & *Plus Jakarta Sans*) über **Bunny Fonts** (DSGVO-konform, EU-Server).
+Statische Seite, gebaut mit reinem **Astro** + **Tailwind CSS** (ohne schweres Frontend-Framework für maximale Ladegeschwindigkeit). Schriften (*Cormorant Garamond* & *Plus Jakarta Sans*) über **Bunny Fonts** (DSGVO-konform, EU-Server).
 
 Live: https://friseur-jacqueline-dickhaus.de
 

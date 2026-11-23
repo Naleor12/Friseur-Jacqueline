@@ -1,5 +1,5 @@
 ---
-import ServicesMenu from './ServicesMenu.jsx';
+import ServicesMenu from './ServicesMenu.astro';
 import servicesData from '../data/services.json';
 
 const signatures = [
@@ -80,7 +80,7 @@ const signatures = [
 
     <!-- Framed Salon Price Menu -->
     <div id="salon-menue" class="scroll-mt-28 bg-sand/55 border border-linen rounded-[2rem] p-6 sm:p-10 lg:p-14 reveal reveal-delay-2">
-      <ServicesMenu client:visible initialData={servicesData} />
+      <ServicesMenu initialData={servicesData} />
     </div>
   </div>
 </section>
