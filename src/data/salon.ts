@@ -2,7 +2,7 @@ export const SALON = {
   name: "Friseur Jacqueline Dickhaus",
   shortName: "Jacqueline Dickhaus",
   tagline: "Meisterbetrieb für Schnitt, Farbe & Stil",
-  founded: 1998,
+  masterSince: 1998,
   experienceYears: "25+",
   phoneDisplay: "02842 1219526",
   phoneHref: "tel:+4928421219526",
