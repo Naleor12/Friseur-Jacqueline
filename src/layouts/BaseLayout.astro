@@ -1,100 +1,70 @@
 ---
 import CookieBanner from '../components/CookieBanner.astro';
+import { SALON } from '../data/salon';
 import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  robots?: string;
+}
+
 const {
-  title = "Friseur Jacqueline Dickhaus - Kamp-Lintfort | Moderne Frisuren für Damen, Herren & Kinder",
-  description = "Professioneller Friseursalon in Kamp-Lintfort mit 25+ Jahren Erfahrung. Moderne Haarschnitte, Colorationen & Styling für die ganze Familie. Jetzt Termin telefonisch vereinbaren!",
-  keywords = "Friseur Kamp-Lintfort, Haarschnitt, Coloration, Styling, Balayage, Herrenhaarschnitt, Kinderhaarschnitt, Jacqueline Dickhaus, Friseursalon",
+  title = "Friseur Jacqueline Dickhaus — Kamp-Lintfort | Meisterbetrieb für Schnitt, Farbe & Stil",
+  description = "Friseurmeisterbetrieb in Kamp-Lintfort seit 1998. Moderne Haarschnitte, Balayage, Coloration & Brautstyling für Damen, Herren & Kinder in entspannter Boutique-Atmosphäre.",
+  keywords = "Friseur Kamp-Lintfort, Haarschnitt, Coloration, Balayage, Brautfrisur, Herrenhaarschnitt, Kinderhaarschnitt, Jacqueline Dickhaus, Friseurmeisterin",
   ogImage = "/images/og-image.jpg",
-  robots = "index, follow"
+  robots = "index, follow",
 } = Astro.props;
 
-// Canonical- und OG-Bild-URL automatisch pro Seite aus der site-URL ableiten
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 
-// Schema.org structured data for local business
 const businessSchema = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
-  "name": "Friseur Jacqueline Dickhaus",
-  "description": description,
-  "url": canonicalUrl,
-  "telephone": "+49 2842 1219526",
-  "email": "info@friseur-jacqueline-dickhaus.de",
-  "priceRange": "€€",
-  "paymentAccepted": "Cash, Credit Card",
-  "currenciesAccepted": "EUR",
-  "address": {
+  name: SALON.name,
+  description,
+  url: canonicalUrl,
+  telephone: SALON.phoneSchema,
+  email: SALON.email,
+  priceRange: "€€",
+  paymentAccepted: "Cash, Credit Card, Girocard",
+  currenciesAccepted: "EUR",
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "Wiesenbruchstraße 39",
-    "addressLocality": "Kamp-Lintfort",
-    "addressRegion": "Nordrhein-Westfalen",
-    "postalCode": "47475",
-    "addressCountry": "DE"
+    streetAddress: SALON.address.street,
+    addressLocality: SALON.address.city,
+    addressRegion: SALON.address.region,
+    postalCode: SALON.address.postalCode,
+    addressCountry: "DE",
   },
-  "geo": {
+  geo: {
     "@type": "GeoCoordinates",
-    "latitude": "51.4969",
-    "longitude": "6.5389"
+    latitude: "51.4969",
+    longitude: "6.5389",
   },
-  "openingHours": [
-    "Tu-Fr 09:00-18:00",
-    "Sa 09:00-14:00"
+  openingHours: ["Tu-Fr 09:00-18:00", "Sa 09:00-14:00"],
+  image: [
+    "https://friseur-jacqueline-dickhaus.de/images/laden1-opt.webp",
+    "https://friseur-jacqueline-dickhaus.de/images/laden2-opt.webp",
+    "https://friseur-jacqueline-dickhaus.de/images/laden3-opt.webp",
   ],
-  "image": [
-    "https://friseur-jacqueline-dickhaus.de/images/laden1.JPG",
-    "https://friseur-jacqueline-dickhaus.de/images/laden2.JPG",
-    "https://friseur-jacqueline-dickhaus.de/images/laden3.JPG"
-  ],
-  "sameAs": [
-    "https://www.instagram.com/friseur_jacqueline_dickhaus",
-    "https://maps.app.goo.gl/QDp7unZyvWbbV82m8"
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Friseur Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Damenhaarschnitt",
-          "description": "Individueller Haarschnitt für Damen"
-        }
-      },
-      {
-        "@type": "Offer", 
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Herrenhaarschnitt",
-          "description": "Moderner Herrenhaarschnitt"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service", 
-          "name": "Coloration",
-          "description": "Professionelle Haarfärbung und Balayage"
-        }
-      }
-    ]
+  sameAs: [SALON.instagramUrl, SALON.googleUrl],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: SALON.rating.schemaScore,
+    bestRating: "5",
+    reviewCount: SALON.rating.count,
   },
-  "founder": {
+  founder: {
     "@type": "Person",
-    "name": "Jacqueline Dickhaus",
-    "jobTitle": "Friseurmeisterin"
+    name: "Jacqueline Dickhaus",
+    jobTitle: "Friseurmeisterin",
   },
-  "acceptsReservations": true,
-  "areaServed": {
-    "@type": "City",
-    "name": "Kamp-Lintfort",
-    "containedInPlace": {
-      "@type": "State",
-      "name": "Nordrhein-Westfalen"
-    }
-  }
+  acceptsReservations: true,
 };
 ---
 
@@ -103,72 +73,82 @@ const businessSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary Meta Tags -->
+    <meta name="theme-color" content="#FAF7F4" />
+
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="author" content="Friseur Jacqueline Dickhaus" />
+    <meta name="author" content={SALON.name} />
     <meta name="robots" content={robots} />
-    <meta name="language" content="German" />
-    
-    <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
-    
-    <!-- Geographic Meta Tags -->
+
+    <!-- Geographic Meta -->
     <meta name="geo.region" content="DE-NW" />
     <meta name="geo.placename" content="Kamp-Lintfort" />
     <meta name="geo.position" content="51.4969;6.5389" />
-    <meta name="ICBM" content="51.4969, 6.5389" />
-    
-    <!-- Open Graph / Facebook -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="business.business" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="de_DE" />
-    <meta property="og:site_name" content="Friseur Jacqueline Dickhaus" />
-    
-    <!-- Business specific Open Graph -->
-    <meta property="business:contact_data:street_address" content="Wiesenbruchstraße 39" />
-    <meta property="business:contact_data:locality" content="Kamp-Lintfort" />
-    <meta property="business:contact_data:postal_code" content="47475" />
-    <meta property="business:contact_data:country_name" content="Deutschland" />
-    <meta property="business:contact_data:phone_number" content="+49 2842 1219526" />
-    <meta property="business:contact_data:website" content={canonicalUrl} />
-    
+    <meta property="og:site_name" content={SALON.name} />
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageUrl} />
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/images/JD_Logo_dark_RGB.png" />
     <link rel="apple-touch-icon" href="/images/JD_Logo_dark_RGB.png" />
-    
-    <!-- Preconnect for performance -->
+
+    <!-- DSGVO-konforme EU-Fonts (Bunny Fonts) -->
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
+    <link
+      href="https://fonts.bunny.net/css?family=cormorant-garamond:300,400,400i,500,500i,600|plus-jakarta-sans:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Stylesheets (Bunny Fonts: DSGVO-konform, EU-Server) -->
-    <link href="https://fonts.bunny.net/css?family=josefin-sans:400,500,700&display=swap" rel="stylesheet" />
-
-    <!-- Scripts (von Astro gebündelt, damit sie auch im Build laden) -->
-    <script>
-      import '../scripts/aos-init.js';
-    </script>
-    
-    <!-- JSON-LD Structured Data -->
+    <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
   </head>
-  <body class="scroll-smooth bg-white text-gray-800 font-josefin overflow-x-hidden">
+  <body class="bg-cream text-espresso font-sans antialiased overflow-x-hidden selection:bg-branding selection:text-espresso">
     <slot />
     <CookieBanner />
+
+    <script>
+      function initReveal() {
+        const elements = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          elements.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        elements.forEach((el) => observer.observe(el));
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReveal);
+      } else {
+        initReveal();
+      }
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
   </body>
 </html>

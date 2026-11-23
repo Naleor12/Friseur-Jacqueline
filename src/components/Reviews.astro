@@ -1,0 +1,108 @@
+---
+import { SALON } from '../data/salon';
+
+const praisePillars = [
+  {
+    number: "01",
+    title: "Wohlfühlatmosphäre & Herzlichkeit",
+    text: "Kundinnen und Kunden heben in ihren Google-Rezensionen besonders die ruhige, familiäre Atmosphäre, aufmerksamen Service und das echte Gefühl einer kleinen Auszeit hervor.",
+  },
+  {
+    number: "02",
+    title: "Ehrliche Beratung & präzises Handwerk",
+    text: "Ob klassischer Schnitt, Farbveränderung oder anspruchsvolle Wünsche – wir hören genau zu und setzen deinen Look typgerecht und mit ruhiger Hand um.",
+  },
+  {
+    number: "03",
+    title: "Langjähriges Vertrauen",
+    text: "Viele Stammkundinnen und Stammkunden begleiten uns bereits seit Jahren und kommen immer wieder gern in die Wiesenbruchstraße zurück.",
+  },
+];
+---
+
+<section id="bewertungen" class="scroll-mt-20 bg-sand py-24 lg:py-32 border-y border-linen">
+  <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Left: Verified Google Rating Feature Card -->
+      <div class="lg:col-span-5 reveal">
+        <div class="bg-espresso text-cream rounded-[2rem] p-8 sm:p-11 border border-white/10 shadow-2xl space-y-7 relative overflow-hidden">
+          <div
+            class="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-branding/15 blur-2xl"
+            aria-hidden="true"
+          ></div>
+
+          <div class="relative z-10 space-y-2">
+            <p class="text-[11px] uppercase tracking-editorial text-branding font-medium">
+              05 — Kundenstimmen
+            </p>
+            <h2 class="font-serif text-4xl sm:text-5xl font-normal leading-tight">
+              Ausgezeichnet <em class="italic font-light text-branding">bewertet.</em>
+            </h2>
+          </div>
+
+          <!-- Big Rating Metric -->
+          <div class="relative z-10 flex items-end gap-5 py-6 border-y border-white/10">
+            <span class="font-serif text-6xl sm:text-7xl leading-none font-light text-cream">
+              {SALON.rating.score}
+            </span>
+            <div class="space-y-1.5 pb-1">
+              <div class="flex items-center gap-1 text-branding" aria-label="4,8 von 5 Sternen">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.286 3.958c.3.921-.755 1.688-1.539 1.118l-3.368-2.447a1 1 0 00-1.176 0l-3.368 2.447c-.784.57-1.838-.197-1.539-1.118l1.286-3.958a1 1 0 00-.364-1.118L2.075 9.385c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.274-3.958z" />
+                  </svg>
+                ))}
+              </div>
+              <p class="text-xs uppercase tracking-editorial text-cream/70">
+                Ø aus {SALON.rating.label}
+              </p>
+            </div>
+          </div>
+
+          <p class="relative z-10 text-sm text-cream/75 font-light leading-relaxed">
+            Echte Bewertungen sind das schönste Kompliment für unser Handwerk. Alle aktuellen
+            Rezensionen findest du direkt in unserem Google-Unternehmensprofil.
+          </p>
+
+          <div class="relative z-10 flex flex-wrap gap-3 pt-1">
+            <a
+              href={SALON.googleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2.5 bg-branding text-espresso px-6 py-3.5 rounded-full text-xs uppercase tracking-[0.14em] font-semibold hover:bg-branding-200 transition-colors"
+            >
+              <span>Alle Google-Bewertungen</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: 3 Recurring Themes Clients Love -->
+      <div class="lg:col-span-7 space-y-6 reveal reveal-delay-1">
+        <div class="space-y-2 pb-2">
+          <p class="text-[11px] uppercase tracking-editorial text-branding-700 font-medium">
+            Was unsere Gäste schätzen
+          </p>
+          <h3 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">
+            Drei Gründe, warum Kundinnen &amp; Kunden wiederkommen
+          </h3>
+        </div>
+
+        <div class="space-y-4">
+          {praisePillars.map((pillar) => (
+            <article class="bg-cream rounded-2xl border border-linen p-6 sm:p-7 flex items-start gap-5 transition-colors hover:border-branding-400">
+              <span class="font-serif text-2xl text-branding-600 leading-none pt-1 flex-shrink-0">
+                {pillar.number}
+              </span>
+              <div class="space-y-1.5">
+                <h4 class="font-serif text-2xl text-espresso font-normal">{pillar.title}</h4>
+                <p class="text-sm text-ink font-light leading-relaxed">{pillar.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

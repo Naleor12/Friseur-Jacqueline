@@ -1,275 +1,118 @@
 ---
-// Datenschutz.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { SALON } from '../data/salon';
 ---
 
-<BaseLayout 
-  title="Datenschutzerklärung - Friseur Jacqueline Dickhaus"
+<BaseLayout
+  title="Datenschutzerklärung — Friseur Jacqueline Dickhaus"
   description="Datenschutzerklärung und Informationen zum Umgang mit personenbezogenen Daten bei Friseur Jacqueline Dickhaus."
-  keywords="Datenschutz, DSGVO, Datenschutzerklärung, Friseur Jacqueline Dickhaus"
   robots="noindex, follow"
 >
-  <main class="min-h-screen bg-gray-50 py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Header -->
-      <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold font-josefin text-gray-900 mb-4">
+  <Navbar isSubpage={true} />
+
+  <main class="min-h-screen bg-cream pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <div class="mb-12 pb-8 border-b border-linen">
+        <p class="text-[11px] uppercase tracking-editorial text-branding-700 font-medium mb-3">
+          DSGVO-Informationen
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl text-espresso font-normal">
           Datenschutzerklärung
         </h1>
-        <div class="w-20 h-1 bg-branding mx-auto rounded-full"></div>
       </div>
 
-      <!-- Content -->
-      <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-        
-        <!-- Übersicht -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
+      <div class="space-y-10 text-ink font-light leading-relaxed text-sm sm:text-base">
+        <section class="space-y-3">
+          <h2 class="font-serif text-2xl text-espresso font-normal border-b border-linen pb-2">
             1. Datenschutz auf einen Blick
           </h2>
-          
-          <div class="space-y-6 text-gray-700">
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-3">Allgemeine Hinweise</h3>
-              <p class="leading-relaxed">
-                Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten 
-                passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie 
-                persönlich identifiziert werden können.
-              </p>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-3">Datenerfassung auf dieser Website</h3>
-              <p class="leading-relaxed">
-                Diese Website erfasst nur die minimal notwendigen Daten. Bei der Terminbuchung werden Ihre Kontaktdaten 
-                ausschließlich für die Terminvereinbarung und -bestätigung verwendet.
-              </p>
-            </div>
-          </div>
+          <p>
+            Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+          </p>
         </section>
 
-        <!-- Verantwortliche Stelle -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
+        <section class="space-y-3">
+          <h2 class="font-serif text-2xl text-espresso font-normal border-b border-linen pb-2">
             2. Verantwortliche Stelle
           </h2>
-          
-          <div class="text-gray-700">
-            <p class="leading-relaxed mb-4">
-              Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+          <div class="bg-sand rounded-2xl p-6 border border-linen">
+            <p>
+              <strong class="font-medium text-espresso">Jacqueline Dickhaus</strong><br />
+              Friseurmeisterin<br />
+              {SALON.address.street}, {SALON.address.postalCode} {SALON.address.city}<br /><br />
+              <strong class="font-medium text-espresso">Telefon:</strong>{' '}
+              <a href={SALON.phoneHref} class="text-branding-700 hover:underline">{SALON.phoneDisplay}</a><br />
+              <strong class="font-medium text-espresso">E-Mail:</strong>{' '}
+              <a href={`mailto:${SALON.legalEmail}`} class="text-branding-700 hover:underline">{SALON.legalEmail}</a>
             </p>
-            
-            <div class="bg-gray-50 rounded-lg p-6">
-              <p>
-                <strong>Jacqueline Dickhaus</strong><br>
-                Friseurmeisterin<br>
-                Wiesenbruchstraße 39<br>
-                47475 Kamp-Lintfort<br><br>
-                
-                <strong>Telefon:</strong> <a href="tel:+4928421219526" class="text-branding hover:underline">02842 1219526</a><br>
-                <strong>E-Mail:</strong> <a href="mailto:jacqueline@dickhaus.org" class="text-branding hover:underline">jacqueline@dickhaus.org</a>
-              </p>
-            </div>
           </div>
         </section>
 
-        <!-- Datenerfassung -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
+        <section class="space-y-4">
+          <h2 class="font-serif text-2xl text-espresso font-normal border-b border-linen pb-2">
             3. Datenerfassung auf dieser Website
           </h2>
-          
-          <div class="space-y-6 text-gray-700">
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-3">Cookies</h3>
-              <p class="leading-relaxed mb-4">
-                Diese Website verwendet Cookies nur nach Ihrer expliziten Einwilligung. Sie können Ihre 
-                Cookie-Einstellungen jederzeit über das Cookie-Banner anpassen.
-              </p>
-              
-              <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 class="font-semibold text-blue-900 mb-2">Cookie-Kategorien:</h4>
-                <ul class="list-disc list-inside space-y-1 text-blue-800">
-                  <li><strong>Notwendige Cookies:</strong> Für grundlegende Website-Funktionen</li>
-                  <li><strong>Analyse-Cookies:</strong> Zur Verbesserung unserer Services (optional)</li>
-                  <li><strong>Marketing-Cookies:</strong> Für personalisierte Inhalte (optional)</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-3">Server-Log-Dateien</h3>
-              <p class="leading-relaxed">
-                Der Provider der Seiten erhebt und speichert automatisch Informationen in Server-Log-Dateien, 
-                die Ihr Browser automatisch übermittelt. Dies sind:
-              </p>
-              <ul class="list-disc list-inside mt-2 space-y-1">
-                <li>Browsertyp und Browserversion</li>
-                <li>Verwendetes Betriebssystem</li>
-                <li>Referrer URL</li>
-                <li>Hostname des zugreifenden Rechners</li>
-                <li>Uhrzeit der Serveranfrage</li>
-                <li>IP-Adresse</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-3">Kontaktformular und Terminbuchung</h3>
-              <p class="leading-relaxed">
-                Wenn Sie uns per Kontaktformular oder über das Buchungssystem Anfragen zukommen lassen, 
-                werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen 
-                Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
-              </p>
-            </div>
+          <div>
+            <h3 class="font-medium text-espresso mb-1">Cookies</h3>
+            <p>
+              Diese Website speichert Ihre Einwilligung zu Cookies lokal in Ihrem Browser. Optionale Analyse- oder Marketing-Cookies werden nicht ohne Ihre ausdrückliche Zustimmung gesetzt.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-medium text-espresso mb-1">Server-Log-Dateien</h3>
+            <p>
+              Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt (Browsertyp, Betriebssystem, Referrer URL, Uhrzeit der Anfrage, IP-Adresse). Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-medium text-espresso mb-1">Telefon- und E-Mail-Anfragen</h3>
+            <p>
+              Wenn Sie uns per Telefon oder E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und zur Terminvereinbarung gespeichert und nicht ohne Ihre Einwilligung an Dritte weitergegeben.
+            </p>
           </div>
         </section>
 
-        <!-- Externe Dienste -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
-            4. Externe Dienste
+        <section class="space-y-3">
+          <h2 class="font-serif text-2xl text-espresso font-normal border-b border-linen pb-2">
+            4. Externe Dienste &amp; Schriftarten
           </h2>
-          
-          <div class="space-y-6 text-gray-700">
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-3">Fonts (Bunny Fonts)</h3>
-              <p class="leading-relaxed">
-                Diese Website nutzt Bunny Fonts für die Darstellung von Schriftarten. Bunny Fonts ist ein 
-                DSGVO-konformer Service mit Servern in der EU. Es werden keine personenbezogenen Daten übertragen.
-              </p>
-            </div>
-            
-            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <h4 class="font-semibold text-yellow-900 mb-2">Analytics-Tools (bei Aktivierung):</h4>
-              <p class="text-yellow-800 text-sm">
-                Falls Sie Analytics-Cookies akzeptiert haben, verwenden wir Tools zur Webseitenanalyse. 
-                Diese Daten werden ausschließlich in anonymisierter Form erfasst und ausgewertet.
-              </p>
-            </div>
-          </div>
+          <p>
+            Diese Website nutzt <strong class="font-medium text-espresso">Bunny Fonts</strong> für die einheitliche Darstellung von Schriftarten. Bunny Fonts ist ein DSGVO-konformer Dienst mit Servern in der Europäischen Union, der keine personenbezogenen Nutzerprofile anlegt.
+          </p>
+          <p>
+            Verlinkungen zu externen Diensten wie Instagram oder Google Maps öffnen sich erst aktiv nach Ihrem Klick; beim reinen Besuch unserer Website werden keine Daten an diese Anbieter übertragen.
+          </p>
         </section>
 
-        <!-- Ihre Rechte -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
+        <section class="space-y-3">
+          <h2 class="font-serif text-2xl text-espresso font-normal border-b border-linen pb-2">
             5. Ihre Rechte
           </h2>
-          
-          <div class="space-y-6 text-gray-700">
-            <p class="leading-relaxed">
-              Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer 
-              gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung 
-              oder Löschung dieser Daten zu verlangen.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-              <div class="bg-gray-50 rounded-lg p-6">
-                <h3 class="font-semibold text-gray-900 mb-3">Ihre Rechte im Überblick:</h3>
-                <ul class="space-y-2 text-sm">
-                  <li>✓ Recht auf Auskunft</li>
-                  <li>✓ Recht auf Berichtigung</li>
-                  <li>✓ Recht auf Löschung</li>
-                  <li>✓ Recht auf Einschränkung</li>
-                  <li>✓ Recht auf Datenübertragbarkeit</li>
-                  <li>✓ Recht auf Widerspruch</li>
-                </ul>
-              </div>
-              
-              <div class="bg-branding/5 rounded-lg p-6 border border-branding/20">
-                <h3 class="font-semibold text-gray-900 mb-3">Kontakt für Datenschutzfragen:</h3>
-                <p class="text-sm">
-                  <strong>E-Mail:</strong> <a href="mailto:jacqueline@dickhaus.org" class="text-branding hover:underline">jacqueline@dickhaus.org</a><br>
-                  <strong>Telefon:</strong> <a href="tel:+4928421219526" class="text-branding hover:underline">02842 1219526</a><br><br>
-                  <em>Wir beantworten Ihre Anfrage innerhalb von 30 Tagen.</em>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Speicherdauer -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
-            6. Speicherdauer
-          </h2>
-          
-          <div class="text-gray-700">
-            <div class="space-y-4">
-              <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                <span class="font-medium">Kontaktanfragen</span>
-                <span class="text-sm text-gray-600">24 Monate</span>
-              </div>
-              <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                <span class="font-medium">Terminbuchungen</span>
-                <span class="text-sm text-gray-600">36 Monate</span>
-              </div>
-              <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                <span class="font-medium">Server-Logs</span>
-                <span class="text-sm text-gray-600">7 Tage</span>
-              </div>
-              <div class="flex justify-between items-center py-3">
-                <span class="font-medium">Cookie-Einstellungen</span>
-                <span class="text-sm text-gray-600">12 Monate</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SSL Verschlüsselung -->
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold font-josefin text-gray-900 mb-6 border-b border-gray-200 pb-3">
-            7. SSL- bzw. TLS-Verschlüsselung
-          </h2>
-          
-          <div class="text-gray-700">
-            <p class="leading-relaxed">
-              Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine 
-              SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile 
-              des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
-            </p>
-          </div>
-        </section>
-
-        <!-- Footer Info -->
-        <div class="border-t border-gray-200 pt-8">
-          <p class="text-sm text-gray-500 text-center">
-            Stand: <span id="datenschutz-date"></span> | 
-            <a href="/impressum" class="text-branding hover:underline">Impressum</a>
+          <p>
+            Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten sowie ein Recht auf Berichtigung, Einschränkung, Datenübertragbarkeit, Widerspruch oder Löschung dieser Daten.
           </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="font-serif text-2xl text-espresso font-normal border-b border-linen pb-2">
+            6. SSL- bzw. TLS-Verschlüsselung
+          </h2>
+          <p>
+            Diese Seite nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung, erkennbar an „https://“ und dem Schloss-Symbol in Ihrer Browserzeile.
+          </p>
+        </section>
+
+        <div class="pt-8 border-t border-linen flex items-center justify-between text-xs text-taupe">
+          <a href="/" class="inline-flex items-center gap-2 text-espresso hover:text-branding-700 transition-colors font-medium uppercase tracking-wider">
+            ← Zurück zur Startseite
+          </a>
+          <a href="/Impressum" class="text-branding-700 hover:underline">Impressum</a>
         </div>
-        
       </div>
-      
-      <!-- Back to home -->
-      <div class="text-center mt-12">
-        <a 
-          href="/"
-          class="inline-flex items-center gap-2 text-branding hover:text-branding-600 transition-colors font-medium"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          Zurück zur Startseite
-        </a>
-      </div>
-      
     </div>
   </main>
-</BaseLayout>
 
-<script>
-  // Set current date
-  document.addEventListener('DOMContentLoaded', () => {
-    const dateElement = document.getElementById('datenschutz-date');
-    if (dateElement) {
-      const today = new Date();
-      const options: Intl.DateTimeFormatOptions = { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      };
-      dateElement.textContent = today.toLocaleDateString('de-DE', options);
-    }
-  });
-</script>
+  <Footer />
+</BaseLayout>

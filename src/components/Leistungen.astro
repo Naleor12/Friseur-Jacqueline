@@ -1,15 +1,104 @@
 ---
-import TabsIsland from '../components/TabsIsland.astro';
+import ServicesMenu from './ServicesMenu.jsx';
+import servicesData from '../data/services.json';
+
+const signatures = [
+  {
+    title: "Schnitt & Styling",
+    subtitle: "Typgerecht, tragbar & präzise",
+    image: "/images/schnitt-opt.webp",
+    tag: "Damen & Herren",
+    targetTab: "damen",
+  },
+  {
+    title: "Balayage & Farbe",
+    subtitle: "Weiche Übergänge & brillanter Glanz",
+    image: "/images/blond-opt.webp",
+    tag: "Farbkompetenz",
+    targetTab: "damen",
+  },
+  {
+    title: "Braut & Anlässe",
+    subtitle: "Romantische Hochsteck- & Eventfrisuren",
+    image: "/images/braut-opt.webp",
+    tag: "Inkl. Probetermin",
+    targetTab: "damen",
+  },
+];
 ---
 
-<section id="leistungen" class="scroll-mt-24 bg-white py-32 px-4 sm:px-10 lg:px-24">
-  <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
-    <h2 class="text-3xl md:text-4xl font-bold font-josefin text-gray-800">
-      Unsere Leistungen
-    </h2>
-    <div class="w-12 h-1 mx-auto bg-branding mt-4 mb-12 rounded-full"></div>
-    <div class="mt-20" data-aos="fade-up">
-      <TabsIsland />
+<section id="leistungen" class="scroll-mt-20 bg-cream py-24 lg:py-32">
+  <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14">
+    <!-- Section Header -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14 reveal">
+      <div class="space-y-4 max-w-2xl">
+        <p class="text-[11px] uppercase tracking-editorial text-branding-700 font-medium">
+          02 — Leistungen &amp; Preise
+        </p>
+        <h2 class="font-serif text-4xl sm:text-5xl xl:text-[3.5rem] text-espresso font-normal leading-tight">
+          Unser <em class="italic font-light text-branding-700">Salon-Menü</em>
+        </h2>
+      </div>
+      <p class="text-ink font-light text-sm sm:text-base leading-relaxed max-w-md">
+        Alle Preise verstehen sich inklusive individueller Beratung. Bei Farb- und
+        Strähnentechniken richtet sich der Endpreis nach Haarlänge und Aufwand.
+      </p>
+    </div>
+
+    <!-- 3 Clickable Visual Signature Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal reveal-delay-1">
+      {signatures.map((sig) => (
+        <a
+          href="#salon-menue"
+          data-select-tab={sig.targetTab}
+          class="signature-card group relative overflow-hidden rounded-[1.5rem] bg-espresso aspect-[16/10] shadow-md block focus:outline-none focus-visible:ring-2 focus-visible:ring-branding-600"
+        >
+          <img
+            src={sig.image}
+            alt={sig.title}
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-editorial group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-espresso/85 via-espresso/25 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="bg-cream/90 backdrop-blur-sm text-espresso text-[10px] uppercase tracking-editorial font-medium px-3 py-1 rounded-full">
+              {sig.tag}
+            </span>
+          </div>
+          <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3 text-cream">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-normal leading-tight">{sig.title}</h3>
+              <p class="text-xs text-cream/80 font-light mt-1">{sig.subtitle}</p>
+            </div>
+            <span class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-sm group-hover:bg-branding group-hover:text-espresso group-hover:border-branding transition-colors flex-shrink-0">
+              ↓
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Framed Salon Price Menu -->
+    <div id="salon-menue" class="scroll-mt-28 bg-sand/55 border border-linen rounded-[2rem] p-6 sm:p-10 lg:p-14 reveal reveal-delay-2">
+      <ServicesMenu client:visible initialData={servicesData} />
     </div>
   </div>
 </section>
+
+<script>
+  function initSignatureLinks() {
+    document.querySelectorAll('.signature-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const tab = (card as HTMLElement).dataset.selectTab;
+        if (tab) {
+          window.dispatchEvent(new CustomEvent('selectServiceTab', { detail: { tab } }));
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSignatureLinks);
+  } else {
+    initSignatureLinks();
+  }
+</script>

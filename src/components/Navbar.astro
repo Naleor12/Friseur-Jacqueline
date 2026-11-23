@@ -1,5 +1,258 @@
 ---
-import NavbarComponent from './NavbarComponent.jsx';
+import { SALON } from '../data/salon';
+
+interface Props {
+  isSubpage?: boolean;
+}
+
+const { isSubpage = false } = Astro.props;
+const prefix = isSubpage ? '/' : '';
+
+const navLinks = [
+  { label: 'Salon', href: `${prefix}#salon`, id: 'salon' },
+  { label: 'Leistungen', href: `${prefix}#leistungen`, id: 'leistungen' },
+  { label: 'Team', href: `${prefix}#team`, id: 'team' },
+  { label: 'Galerie', href: `${prefix}#galerie`, id: 'galerie' },
+  { label: 'Fragen', href: `${prefix}#faq`, id: 'faq' },
+  { label: 'Kontakt', href: `${prefix}#kontakt`, id: 'kontakt' },
+];
 ---
 
-<NavbarComponent client:load />
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-editorial bg-cream/90 backdrop-blur-md border-b border-linen/70"
+>
+  <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14">
+    <div class="flex items-center justify-between h-20">
+      <!-- Brand Logo + Wordmark -->
+      <a
+        href={isSubpage ? '/' : '#hero'}
+        class="flex items-center gap-3.5 group focus:outline-none"
+        aria-label="Friseur Jacqueline Dickhaus — Startseite"
+      >
+        <img
+          src="/images/JD_Logo_dark_RGB.png"
+          alt="JD Monogramm"
+          class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          width="80"
+          height="40"
+        />
+        <div class="hidden sm:flex flex-col leading-none">
+          <span class="font-serif text-[22px] tracking-wide text-espresso font-medium">
+            Jacqueline Dickhaus
+          </span>
+          <span class="text-[10px] uppercase tracking-editorial text-taupe mt-1">
+            Friseurmeisterbetrieb · Kamp-Lintfort
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="Hauptnavigation" class="hidden md:flex items-center gap-10">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            data-nav-link={link.id}
+            class="nav-link relative py-2 text-[12px] uppercase tracking-[0.16em] text-ink hover:text-espresso transition-colors duration-300 font-medium"
+          >
+            {link.label}
+            <span class="nav-underline absolute left-0 bottom-0 h-px w-0 bg-branding-600 transition-all duration-300"></span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop CTA -->
+      <div class="hidden md:flex items-center gap-5">
+        <a
+          href={SALON.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="text-ink hover:text-branding-700 transition-colors p-1.5"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z" />
+          </svg>
+        </a>
+        <a
+          href={SALON.phoneHref}
+          class="inline-flex items-center gap-2.5 bg-espresso text-cream px-5 py-2.5 rounded-full text-xs uppercase tracking-[0.14em] font-medium hover:bg-bark transition-all duration-300 hover:shadow-md"
+        >
+          <svg class="w-3.5 h-3.5 text-branding" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>{SALON.phoneDisplay}</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex md:hidden items-center gap-3">
+        <a
+          href={SALON.phoneHref}
+          class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-espresso text-cream"
+          aria-label={`Anrufen: ${SALON.phoneDisplay}`}
+        >
+          <svg class="w-4 h-4 text-branding" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+        </a>
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-linen text-espresso focus:outline-none"
+          aria-label="Menü öffnen"
+          aria-expanded="false"
+          aria-controls="mobile-drawer"
+        >
+          <div class="w-4 flex flex-col gap-1.5">
+            <span id="bar-1" class="block h-px w-full bg-espresso transition-transform duration-300 origin-center"></span>
+            <span id="bar-2" class="block h-px w-full bg-espresso transition-transform duration-300 origin-center"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Subtle Scroll Progress Hairline -->
+  <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-transparent pointer-events-none">
+    <div id="scroll-progress-bar" class="h-full bg-branding-500 w-0 transition-[width] duration-100 ease-out"></div>
+  </div>
+</header>
+
+<!-- Fullscreen Editorial Mobile Drawer -->
+<div
+  id="mobile-drawer"
+  class="fixed inset-0 z-40 bg-espresso text-cream translate-x-full transition-transform duration-500 ease-editorial md:hidden flex flex-col justify-between px-8 pt-28 pb-10"
+  aria-hidden="true"
+>
+  <nav aria-label="Mobile Navigation" class="flex flex-col gap-5">
+    {navLinks.map((link, idx) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link group flex items-baseline gap-4 border-b border-white/10 pb-4"
+      >
+        <span class="text-xs font-sans text-branding/80 tracking-widest">0{idx + 1}</span>
+        <span class="font-serif text-4xl font-light text-cream group-hover:text-branding transition-colors">
+          {link.label}
+        </span>
+      </a>
+    ))}
+  </nav>
+
+  <div class="space-y-5 border-t border-white/10 pt-6">
+    <div class="flex flex-col gap-1 text-sm text-cream/70">
+      <p class="uppercase tracking-editorial text-[11px] text-branding">Termin &amp; Kontakt</p>
+      <a href={SALON.phoneHref} class="text-xl font-serif text-cream hover:text-branding transition-colors">
+        {SALON.phoneDisplay}
+      </a>
+      <p class="text-xs text-cream/60">
+        {SALON.address.street} · {SALON.address.postalCode} {SALON.address.city}
+      </p>
+    </div>
+    <div class="flex items-center justify-between text-xs text-cream/60 pt-2">
+      <span>Di–Fr 09–18 · Sa 09–14</span>
+      <a
+        href={SALON.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-branding hover:underline"
+      >
+        Instagram
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nav-link:hover .nav-underline,
+  .nav-link.is-active .nav-underline {
+    width: 100%;
+  }
+  .nav-link.is-active {
+    color: #1C1917;
+  }
+</style>
+
+<script>
+  function initNavbar() {
+    const header = document.getElementById('site-header');
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const bar1 = document.getElementById('bar-1');
+    const bar2 = document.getElementById('bar-2');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    let isOpen = false;
+
+    const setMenuState = (open: boolean) => {
+      isOpen = open;
+      toggleBtn?.setAttribute('aria-expanded', String(open));
+      drawer?.setAttribute('aria-hidden', String(!open));
+      if (open) {
+        drawer?.classList.remove('translate-x-full');
+        document.body.classList.add('modal-open');
+        if (bar1) bar1.style.transform = 'translateY(3.5px) rotate(45deg)';
+        if (bar2) bar2.style.transform = 'translateY(-3.5px) rotate(-45deg)';
+      } else {
+        drawer?.classList.add('translate-x-full');
+        document.body.classList.remove('modal-open');
+        if (bar1) bar1.style.transform = '';
+        if (bar2) bar2.style.transform = '';
+      }
+    };
+
+    toggleBtn?.addEventListener('click', () => setMenuState(!isOpen));
+    mobileLinks.forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) setMenuState(false);
+    });
+
+    const progressBar = document.getElementById('scroll-progress-bar');
+
+    const onScroll = () => {
+      if (progressBar) {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = total > 0 ? Math.min((window.scrollY / total) * 100, 100) : 0;
+        progressBar.style.width = `${pct}%`;
+      }
+      if (!header) return;
+      if (window.scrollY > 24) {
+        header.classList.add('bg-cream/95', 'shadow-sm');
+        header.classList.remove('bg-cream/90');
+      } else {
+        header.classList.remove('bg-cream/95', 'shadow-sm');
+        header.classList.add('bg-cream/90');
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const sections = ['salon', 'leistungen', 'team', 'galerie', 'faq', 'kontakt']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (sections.length && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) => {
+                const isMatch = link.getAttribute('data-nav-link') === entry.target.id;
+                link.classList.toggle('is-active', isMatch);
+              });
+            }
+          });
+        },
+        { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+      );
+      sections.forEach((sec) => observer.observe(sec));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavbar);
+  } else {
+    initNavbar();
+  }
+</script>

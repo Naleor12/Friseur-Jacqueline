@@ -4,40 +4,36 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        josefin: ['"Josefin Sans"', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
+        cream: "#FAF7F4",
+        sand: "#F2ECE6",
+        linen: "#E5DCD4",
+        espresso: "#1C1917",
+        bark: "#292421",
+        ink: "#4E4640",
+        taupe: "#857970",
         branding: {
-          DEFAULT: "#d5b6b8",
-          50: "#f7f2f3",
-          100: "#efe7e9",
-          200: "#e3d4d6",
-          300: "#d8c2c5",
-          400: "#ceb1b5",
-          500: "#d5b6b8",
-          600: "#c09ea0",
-          700: "#a78489",
-          800: "#8c6c71",
-          900: "#72585c",
-        },
-        "branding-light": "#e0c8ca", // Für Gülnar
-        "branding-dark": "#b99fa1",  // Für Evelina
-      },
-      keyframes: {
-        shimmer: {
-          "0%": { backgroundPosition: "0% 0%" },
-          "100%": { backgroundPosition: "200% 0%" },
-        },
-        fadeInDelayed: {
-          "0%": { opacity: 0, transform: "translateY(40px)" },
-          "50%": { opacity: 0, transform: "translateY(20px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
+          DEFAULT: "#D5B6B8",
+          50: "#FAF5F5",
+          100: "#F3E8E9",
+          200: "#E7D3D5",
+          300: "#D5B6B8",
+          400: "#C29B9E",
+          500: "#A87D81",
+          600: "#8C6166",
+          700: "#724C51",
+          800: "#593A3E",
+          900: "#422B2E",
         },
       },
-      animation: {
-        shimmer: "shimmer 10s ease-in-out infinite",
-        fadeIn: "fadeIn 1.2s ease-out forwards",
-        fadeInDelayed: "fadeInDelayed 0.8s ease-out forwards",
+      letterSpacing: {
+        editorial: "0.18em",
+      },
+      transitionTimingFunction: {
+        editorial: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },
   },

@@ -1,0 +1,115 @@
+---
+import { SALON } from '../data/salon';
+
+const specialties = [
+  "Meisterbetrieb seit 1998 mit höchstem Qualitätsanspruch",
+  "Präzision in klassischen wie modernen Haarschnitten",
+  "Typgerechte Farb- & Balayage-Beratung mit Blick fürs Detail",
+  "Herzliche, entspannte Atmosphäre ohne Zeitdruck",
+];
+---
+
+<section id="team" class="scroll-mt-20 bg-espresso text-cream py-24 lg:py-32 relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute top-0 right-0 w-[560px] h-[560px] rounded-full bg-branding/10 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 relative z-10">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-white/10 reveal">
+      <div class="space-y-4">
+        <p class="text-[11px] uppercase tracking-editorial text-branding font-medium">
+          03 — Das Team
+        </p>
+        <h2 class="font-serif text-4xl sm:text-5xl xl:text-[3.5rem] text-cream font-normal leading-tight">
+          Persönlichkeit <em class="italic font-light text-branding">trifft Präzision.</em>
+        </h2>
+      </div>
+      <p class="text-cream/70 font-light max-w-md text-sm sm:text-base leading-relaxed">
+        Hinter jedem guten Schnitt stehen Erfahrung, ein geschultes Auge und echte Freude
+        am Umgang mit Menschen.
+      </p>
+    </div>
+
+    <!-- Owner Editorial Feature -->
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <!-- Portrait -->
+      <div class="lg:col-span-5 reveal">
+        <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-bark aspect-square max-w-md mx-auto lg:max-w-none shadow-2xl">
+          <img
+            src="/jacqueline_1.JPG"
+            alt="Jacqueline Dickhaus — Friseurmeisterin und Inhaberin in Kamp-Lintfort"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+          <div class="absolute bottom-5 left-5 bg-espresso/85 backdrop-blur-md border border-white/15 px-4 py-2 rounded-full">
+            <span class="text-[11px] uppercase tracking-editorial text-branding">
+              Inhaberin &amp; Meisterin
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio & Details -->
+      <div class="lg:col-span-7 space-y-8 reveal reveal-delay-1">
+        <div>
+          <h3 class="font-serif text-4xl sm:text-5xl text-cream font-normal">
+            Jacqueline Dickhaus
+          </h3>
+          <p class="text-xs uppercase tracking-editorial text-branding mt-2">
+            Friseurmeisterin · Über 25 Jahre Berufserfahrung
+          </p>
+        </div>
+
+        <p class="text-cream/80 font-light text-base sm:text-lg leading-relaxed max-w-2xl">
+          Mit über 25 Jahren Erfahrung und der Leidenschaft für stilvolle, tragbare Frisuren
+          führt Jacqueline ihren Meisterbetrieb mit fachlicher Präzision und echter
+          Herzlichkeit. Ob zeitloser Klassiker oder moderner Typwechsel – jede Kundin und
+          jeder Kunde steht bei ihr im Mittelpunkt.
+        </p>
+
+        <!-- Specialties Grid -->
+        <ul class="grid sm:grid-cols-2 gap-4 pt-2">
+          {specialties.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-cream/85 font-light leading-relaxed bg-bark/70 border border-white/5 rounded-xl p-4">
+              <span class="mt-1.5 w-1.5 h-1.5 rotate-45 bg-branding flex-shrink-0"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Quote -->
+        <blockquote class="border-l border-branding/60 pl-5 py-1 font-serif italic text-xl text-cream/90 leading-relaxed max-w-2xl">
+          „Ob traditioneller Schnitt oder zeitloser Stil – echte Handwerkskunst zeigt sich
+          daran, dass deine Frisur auch Wochen später noch perfekt fällt.“
+        </blockquote>
+
+        <!-- New Colleague Notice -->
+        <div class="pt-2">
+          <div class="rounded-2xl bg-bark border border-white/10 p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div class="space-y-1.5">
+              <div class="inline-flex items-center gap-2 text-[11px] uppercase tracking-editorial text-branding">
+                <span class="w-2 h-2 rounded-full bg-branding"></span>
+                <span>Neu im Salon</span>
+              </div>
+              <h4 class="font-serif text-2xl text-cream font-normal">
+                Wir haben Verstärkung bekommen
+              </h4>
+              <p class="text-sm text-cream/70 font-light leading-relaxed max-w-lg">
+                Unsere neue Kollegin unterstützt das Team ab sofort im Salon – Foto und
+                persönlicher Steckbrief folgen hier in Kürze.
+              </p>
+            </div>
+            <a
+              href={SALON.phoneHref}
+              class="inline-flex items-center justify-center whitespace-nowrap border border-branding/50 text-branding hover:bg-branding hover:text-espresso px-5 py-3 rounded-full text-xs uppercase tracking-[0.14em] font-medium transition-colors duration-300"
+            >
+              Termin anfragen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

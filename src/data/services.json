@@ -2,151 +2,133 @@
   "damen": [
     {
       "title": "Haarschnitt",
-      "text": "Waschen, Schneiden und Föhnen – individuell auf deinen Typ abgestimmt.",
-      "duration": "45 Min",
-      "price": "ab 460€",
-      "highlight": true,
-      "iconId": "haircut"
+      "text": "Waschen, individueller Typ-Schnitt und Föhnen – perfekt auf deine Haarstruktur abgestimmt.",
+      "duration": "45 Min.",
+      "price": "ab 46 €",
+      "highlight": true
     },
     {
       "title": "Balayage",
-      "text": "Natürliche Strähnentechnik für einen sonnenverwöhnten Look je nach Haarlänge.",
-      "duration": "90 Min",
-      "price": "ab 150€",
-      "highlight": false,
-      "iconId": "balayage"
+      "text": "Natürliche Freihand-Strähnentechnik für weiche Übergänge und einen sonnenverwöhnten Look.",
+      "duration": "90 Min.",
+      "price": "ab 150 €",
+      "highlight": true
     },
     {
       "title": "Ansatzfärbung",
-      "text": "Professionelle Nachfärbung des Haaransatzes für gleichmäßige Farbe.",
-      "duration": "45 Min",
-      "price": "ab 45€",
-      "highlight": false,
-      "iconId": "coloring"
+      "text": "Präzise Nachfärbung des Haaransatzes für ein ebenmäßiges, brillantes Farbergebnis.",
+      "duration": "45 Min.",
+      "price": "ab 45 €",
+      "highlight": false
     },
     {
-      "title": "Hochsteckfrisur",
-      "text": "Elegante Hochsteckfrisur inklusive Probe für besondere Anlässe.",
-      "duration": "150 Min",
-      "price": "240€",
-      "highlight": false,
-      "iconId": "updo"
+      "title": "Hochsteckfrisur & Brautstyling",
+      "text": "Elegante Hochsteckfrisur inklusive ausführlichem Probetermin für Hochzeit & besondere Anlässe.",
+      "duration": "150 Min.",
+      "price": "240 €",
+      "highlight": false
     },
     {
       "title": "Intensivkur",
-      "text": "Intensive Haarpflege für Regeneration und Glanz je nach Haarlänge.",
-      "duration": "15 Min",
-      "price": "10€",
-      "highlight": false,
-      "iconId": "treatment"
+      "text": "Tiefenwirksame Haarpflege für spürbare Regeneration, Geschmeidigkeit und gesunden Glanz.",
+      "duration": "15 Min.",
+      "price": "10 €",
+      "highlight": false
     },
     {
       "title": "Make-up",
-      "text": "Professionelles Make-up für Tages- oder Abendlook.",
-      "duration": "45-60 Min",
-      "price": "ab 35€",
-      "highlight": false,
-      "iconId": "makeup"
+      "text": "Typgerechtes, professionelles Make-up für einen strahlenden Tages- oder Abendlook.",
+      "duration": "45–60 Min.",
+      "price": "ab 35 €",
+      "highlight": false
     }
   ],
   "herren": [
     {
+      "title": "Klassischer Schnitt",
+      "text": "Zeitlose Eleganz oder moderne Interpretation – sauber mit Schere & Kamm ausgearbeitet.",
+      "duration": "ca. 45 Min.",
+      "price": "ab 38 €",
+      "highlight": true
+    },
+    {
       "title": "Maschinenschnitt",
-      "text": "Präzise Konturen, moderne Fades und professionelle Bartpflege.",
-      "duration": "ca. 30-45 Min",
-      "price": "ab 32€",
-      "highlight": true,
-      "iconId": "haircut"
-    },
-    {
-      "title": "Pflege",
-      "text": "Spezialisierte Kopfhaut- und Haarpflege abgestimmt auf Männer.",
-      "duration": "ca. 20-30 Min",
-      "price": "ab 18€",
-      "highlight": false,
-      "iconId": "treatment"
-    },
-    {
-      "title": "Styling",
-      "text": "Professionelles Finish mit Wachs, Gel und Pomade für deinen Style.",
-      "duration": "ca. 15 Min",
-      "price": "ab 12€",
-      "highlight": false,
-      "iconId": "styling"
+      "text": "Präzise Konturen, saubere Übergänge und moderne Fades – schnell und gepflegt.",
+      "duration": "ca. 30–45 Min.",
+      "price": "ab 32 €",
+      "highlight": false
     },
     {
       "title": "Bartpflege",
-      "text": "Trimmen, formen und pflegen – für den perfekt gepflegten Bart.",
-      "duration": "ca. 20-30 Min",
-      "price": "ab 22€",
-      "highlight": false,
-      "iconId": "beard"
+      "text": "Trimmen, präzises Konturieren und Pflege – für einen rundum gepflegten Bart.",
+      "duration": "ca. 20–30 Min.",
+      "price": "ab 22 €",
+      "highlight": false
     },
     {
-      "title": "Klassischer Schnitt",
-      "text": "Zeitlose Eleganz oder moderne Interpretation – du entscheidest.",
-      "duration": "ca. 45 Min",
-      "price": "ab 38€",
-      "highlight": false,
-      "iconId": "classic-cut"
+      "title": "Kopfhaut- & Haarpflege",
+      "text": "Belebende Spezialpflege abgestimmt auf die Bedürfnisse von Männerhaar und Kopfhaut.",
+      "duration": "ca. 20–30 Min.",
+      "price": "ab 18 €",
+      "highlight": false
+    },
+    {
+      "title": "Styling & Finish",
+      "text": "Professionelles Finish mit hochwertigen Stylingprodukten für den perfekten Halt.",
+      "duration": "ca. 15 Min.",
+      "price": "ab 12 €",
+      "highlight": false
     },
     {
       "title": "Augenbrauen",
-      "text": "Präzises Formen und Konturieren für den perfekten Feinschliff.",
-      "duration": "ca. 15 Min",
-      "price": "ab 15€",
-      "highlight": false,
-      "iconId": "eyebrows"
+      "text": "Präzises Formen und Konturieren für einen gepflegten, natürlichen Feinschliff.",
+      "duration": "ca. 15 Min.",
+      "price": "ab 15 €",
+      "highlight": false
     }
   ],
   "kids": [
     {
-      "title": "Süße Schnitte",
-      "text": "Geduldig & kreativ – auch bei Zappelmäusen.",
-      "duration": "30 Min",
-      "price": "ab 15€",
-      "highlight": true,
-      "iconId": "kids-cut"
-    },
-    {
-      "title": "Flechten & Zöpfe",
-      "text": "Liebevolle Frisuren für besondere Anlässe.",
-      "duration": "45 Min",
-      "price": "ab 35€",
-      "highlight": false,
-      "iconId": "braids"
-    },
-    {
-      "title": "Pflegeleicht",
-      "text": "Alltagstauglich & kindgerecht gestylt.",
-      "duration": "15 Min",
-      "price": "10€",
-      "highlight": false,
-      "iconId": "treatment"
+      "title": "Kinderhaarschnitt",
+      "text": "Geduldig, freundlich & kreativ – wir nehmen uns Zeit, auch bei kleinen Zappelmäusen.",
+      "duration": "30 Min.",
+      "price": "ab 15 €",
+      "highlight": true
     },
     {
       "title": "Waschen & Föhnen",
-      "text": "Behutsam & stressfrei.",
-      "duration": "30 Min",
-      "price": "15€",
-      "highlight": false,
-      "iconId": "wash"
+      "text": "Behutsam, sanft und absolut stressfrei.",
+      "duration": "30 Min.",
+      "price": "15 €",
+      "highlight": false
     },
     {
-      "title": "Glitzer & Accessoires",
-      "text": "Extras, die Kinder lieben.",
-      "duration": "30 Min",
-      "price": "ab 30€",
-      "highlight": false,
-      "iconId": "accessories"
+      "title": "Flechten & Zöpfe",
+      "text": "Liebevoll geflochtene Frisuren für Feste, Schule oder besondere Tage.",
+      "duration": "45 Min.",
+      "price": "ab 35 €",
+      "highlight": false
     },
     {
       "title": "Styling für Events",
-      "text": "Geburtstag, Einschulung & mehr.",
-      "duration": "45 Min",
-      "price": "ab 50€",
-      "highlight": false,
-      "iconId": "event-styling"
+      "text": "Besondere Frisuren für Geburtstag, Einschulung, Kommunion & Familienfeiern.",
+      "duration": "45 Min.",
+      "price": "ab 50 €",
+      "highlight": false
+    },
+    {
+      "title": "Glitzer & Accessoires",
+      "text": "Kleine Extras und funkelnde Highlights, die Kinderaugen zum Leuchten bringen.",
+      "duration": "30 Min.",
+      "price": "ab 30 €",
+      "highlight": false
+    },
+    {
+      "title": "Pflegeleichtes Styling",
+      "text": "Alltagstauglich, sanft und kindgerecht in Form gebracht.",
+      "duration": "15 Min.",
+      "price": "10 €",
+      "highlight": false
     }
   ]
 }
